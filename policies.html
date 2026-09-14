@@ -118,55 +118,58 @@
         }
 
         /* Reviews */
-        .reviews-section {
-            padding: 4rem 5%;
-            background: var(--grey-light);
+        .reviews-widget {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            width: 300px;
+            max-width: calc(100vw - 40px);
+            background: #74adfe;
+            border-radius: 16px;
+            padding: 1.6rem 1.6rem 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            z-index: 500;
         }
 
-        .reviews-card {
+        .reviews-banner-card {
             position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem 3rem 2.5rem;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--ocean-light);
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            background: #74adfe;
+            border-radius: 18px;
+            padding: 2.2rem 2.2rem 1.7rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
+        }
+
+        .reviews-banner-card .review-text {
+            font-size: 1.05rem;
         }
 
         .reviews-close {
             position: absolute;
-            top: 1rem;
-            right: 1.2rem;
+            top: 0.6rem;
+            right: 0.9rem;
             background: none;
             border: none;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             line-height: 1;
             color: var(--charcoal);
-            opacity: 0.35;
+            opacity: 0.45;
             cursor: pointer;
             transition: opacity 0.2s ease;
         }
 
         .reviews-close:hover {
-            opacity: 0.75;
+            opacity: 0.85;
         }
 
         .reviews-mark {
-            font-size: 3.5rem;
+            font-size: 2.4rem;
             font-family: Georgia, serif;
-            color: var(--ocean-light);
+            color: rgba(42, 42, 42, 0.35);
             line-height: 1;
-            margin-bottom: -0.5rem;
-        }
-
-        .reviews-slides {
-            position: relative;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-bottom: -0.2rem;
         }
 
         .review-slide {
@@ -184,50 +187,74 @@
         }
 
         .review-text {
-            font-size: 1.15rem;
+            font-size: 0.95rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
         }
 
         .review-author {
             display: block;
             font-style: normal;
-            font-weight: 600;
-            color: var(--ocean-deep);
-            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            font-size: 0.82rem;
         }
 
         .reviews-dots {
             display: flex;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+        }
+
+        .reviews-banner-card .reviews-dots {
             justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
         }
 
         .review-dot {
-            width: 9px;
-            height: 9px;
+            width: 7px;
+            height: 7px;
             padding: 0;
             border: none;
             border-radius: 50%;
-            background: rgba(26, 95, 122, 0.2);
+            background: rgba(42, 42, 42, 0.25);
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
         .review-dot.active {
-            background: var(--ocean-deep);
+            background: var(--charcoal);
         }
 
-        @media (max-width: 600px) {
-            .reviews-card {
-                padding: 2.5rem 1.5rem 2rem;
+        @media (max-width: 700px) {
+            .reviews-widget {
+                width: 190px;
+                top: 88px;
+                left: 10px;
+                padding: 1rem 1rem 0.8rem;
             }
 
-            .review-text {
-                font-size: 1.05rem;
+            .reviews-widget .reviews-mark {
+                font-size: 1.8rem;
+            }
+
+            .reviews-widget .review-text {
+                font-size: 0.8rem;
+                -webkit-line-clamp: 4;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .reviews-widget .review-author {
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .reviews-widget {
+                width: 160px;
             }
         }
     </style>
@@ -251,6 +278,41 @@
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
         </div>
     </nav>
+
+    <div class="reviews-widget" id="reviewsWidget">
+            <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
+            <div class="reviews-mark">&ldquo;</div>
+            <div class="reviews-slides">
+                <blockquote class="review-slide active">
+                    <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                    <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
+                </blockquote>
+                <blockquote class="review-slide">
+                    <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                    <cite class="review-author">Mylene &mdash; June 2026</cite>
+                </blockquote>
+                <blockquote class="review-slide">
+                    <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                    <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
+                </blockquote>
+                <blockquote class="review-slide">
+                    <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                    <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
+                </blockquote>
+                <blockquote class="review-slide">
+                    <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                    <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+                </blockquote>
+            </div>
+            <div class="reviews-dots">
+                <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
+                <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
+                <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
+                <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
+                <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
+            </div>
+    </div>
+
     
     <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -395,42 +457,6 @@
         </div>
     </div>
 
-    <section class="reviews-section" id="reviewsSection">
-        <div class="reviews-card" id="reviewsCard">
-            <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
-            <div class="reviews-mark">&ldquo;</div>
-            <div class="reviews-slides">
-                <blockquote class="review-slide active">
-                    <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
-                    <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
-                    <cite class="review-author">Mylene &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
-                    <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
-                    <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
-                    <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
-                </blockquote>
-            </div>
-            <div class="reviews-dots">
-                <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
-                <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
-                <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
-                <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
-                <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
         <p class="footer-text" style="margin-top: 1rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
@@ -438,8 +464,8 @@
     <script>
         // Reviews carousel
         (function() {
-            const slides = document.querySelectorAll('#reviewsCard .review-slide');
-            const dots = document.querySelectorAll('#reviewsCard .review-dot');
+            const slides = document.querySelectorAll('#reviewsWidget .review-slide');
+            const dots = document.querySelectorAll('#reviewsWidget .review-dot');
             let current = 0;
             let timer;
 
@@ -462,7 +488,7 @@
             };
 
             window.closeReviews = function() {
-                document.getElementById('reviewsSection').style.display = 'none';
+                document.getElementById('reviewsWidget').style.display = 'none';
                 clearInterval(timer);
             };
 

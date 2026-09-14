@@ -306,55 +306,58 @@
         }
 
         /* Reviews */
-        .reviews-section {
-            padding: 4rem 5%;
-            background: var(--grey-light);
+        .reviews-widget {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            width: 300px;
+            max-width: calc(100vw - 40px);
+            background: #74adfe;
+            border-radius: 16px;
+            padding: 1.6rem 1.6rem 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            z-index: 500;
         }
 
-        .reviews-card {
+        .reviews-banner-card {
             position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem 3rem 2.5rem;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--ocean-light);
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            background: #74adfe;
+            border-radius: 18px;
+            padding: 2.2rem 2.2rem 1.7rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
+        }
+
+        .reviews-banner-card .review-text {
+            font-size: 1.05rem;
         }
 
         .reviews-close {
             position: absolute;
-            top: 1rem;
-            right: 1.2rem;
+            top: 0.6rem;
+            right: 0.9rem;
             background: none;
             border: none;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             line-height: 1;
             color: var(--charcoal);
-            opacity: 0.35;
+            opacity: 0.45;
             cursor: pointer;
             transition: opacity 0.2s ease;
         }
 
         .reviews-close:hover {
-            opacity: 0.75;
+            opacity: 0.85;
         }
 
         .reviews-mark {
-            font-size: 3.5rem;
+            font-size: 2.4rem;
             font-family: Georgia, serif;
-            color: var(--ocean-light);
+            color: rgba(42, 42, 42, 0.35);
             line-height: 1;
-            margin-bottom: -0.5rem;
-        }
-
-        .reviews-slides {
-            position: relative;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-bottom: -0.2rem;
         }
 
         .review-slide {
@@ -372,50 +375,56 @@
         }
 
         .review-text {
-            font-size: 1.15rem;
+            font-size: 0.95rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
         }
 
         .review-author {
             display: block;
             font-style: normal;
-            font-weight: 600;
-            color: var(--ocean-deep);
-            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            font-size: 0.82rem;
         }
 
         .reviews-dots {
             display: flex;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+        }
+
+        .reviews-banner-card .reviews-dots {
             justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
         }
 
         .review-dot {
-            width: 9px;
-            height: 9px;
+            width: 7px;
+            height: 7px;
             padding: 0;
             border: none;
             border-radius: 50%;
-            background: rgba(26, 95, 122, 0.2);
+            background: rgba(42, 42, 42, 0.25);
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
         .review-dot.active {
-            background: var(--ocean-deep);
+            background: var(--charcoal);
         }
 
-        @media (max-width: 600px) {
-            .reviews-card {
-                padding: 2.5rem 1.5rem 2rem;
+        @media (max-width: 700px) {
+            .reviews-widget {
+                width: 220px;
+                top: 90px;
+                left: 12px;
+                padding: 1.2rem 1.2rem 0.9rem;
             }
 
             .review-text {
-                font-size: 1.05rem;
+                font-size: 0.88rem;
             }
         }
     </style>
@@ -496,11 +505,8 @@
 
     <section class="cta-section">
         <p style="font-size: 1.8rem; color: white; font-style: italic; margin-bottom: 2rem; font-weight: 500;">Professional. Personalised. Proven results.</p>
-        <a href="contact.html" class="cta-button">Get Started Today</a>
-    </section>
 
-    <section class="reviews-section" id="reviewsSection">
-        <div class="reviews-card" id="reviewsCard">
+        <div class="reviews-banner-card" id="reviewsWidget">
             <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
             <div class="reviews-mark">&ldquo;</div>
             <div class="reviews-slides">
@@ -533,6 +539,8 @@
                 <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
             </div>
         </div>
+
+        <a href="contact.html" class="cta-button" style="margin-top: 2rem; display: inline-block;">Get Started Today</a>
     </section>
 
     <footer>
@@ -542,8 +550,8 @@
     <script>
         // Reviews carousel
         (function() {
-            const slides = document.querySelectorAll('#reviewsCard .review-slide');
-            const dots = document.querySelectorAll('#reviewsCard .review-dot');
+            const slides = document.querySelectorAll('#reviewsWidget .review-slide');
+            const dots = document.querySelectorAll('#reviewsWidget .review-dot');
             let current = 0;
             let timer;
 
@@ -566,7 +574,7 @@
             };
 
             window.closeReviews = function() {
-                document.getElementById('reviewsSection').style.display = 'none';
+                document.getElementById('reviewsWidget').style.display = 'none';
                 clearInterval(timer);
             };
 
