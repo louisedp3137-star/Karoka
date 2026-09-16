@@ -148,6 +148,56 @@
             .about-card { flex-direction: column; text-align: center; }
         }
 
+        .gallery-section { margin: 1.3rem auto 0; max-width: 1200px; }
+
+        .gallery-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            background: var(--white);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 165px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .gallery-item figcaption {
+            padding: 0.55rem 0.8rem 0.65rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 700px) {
+            .photo-gallery { grid-template-columns: 1fr 1fr; }
+            .gallery-item img { height: 130px; }
+        }
+
+        @media (max-width: 480px) {
+            .photo-gallery { grid-template-columns: 1fr; }
+            .gallery-item img { height: 190px; }
+        }
+
         /* Reviews */
         .reviews-widget {
             position: fixed;
@@ -350,6 +400,24 @@
                         </svg>
                         View LinkedIn Profile
                     </a>
+                </div>
+            </div>
+
+            <div class="gallery-section">
+                <h2 class="gallery-title">Teaching in Action</h2>
+                <div class="photo-gallery">
+                    <figure class="gallery-item">
+                        <img src="images/photo-group-lesson.jpg" alt="Louise leading a small-group English lesson" loading="lazy">
+                        <figcaption>Small-group English lessons in Fort Dauphin</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/photo-rmi-training.jpg" alt="Louise leading a training session for Responsible Mica Initiative staff" loading="lazy">
+                        <figcaption>Training session for Responsible Mica Initiative (RMI) staff</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/photo-cafe-lesson.jpg" alt="An informal English lesson at a local café" loading="lazy">
+                        <figcaption>An informal lesson at a local café</figcaption>
+                    </figure>
                 </div>
             </div>
         </div>
