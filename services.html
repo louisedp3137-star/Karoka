@@ -14,31 +14,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ocean-deep: #1a5f7a;
-            --ocean-light: #57c5b6;
-            --sand-warm: #f4e4c1;
-            --coral: #e67e50;
+            --brand-blue: #7DA4ED;
+            --brand-green: #35AF78;
             --white: #ffffff;
             --charcoal: #2a2a2a;
-            --grey-light: #f8f9fa;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
 
-        body {
-            font-family: 'Aptos', sans-serif;
-            color: var(--charcoal);
-            line-height: 1.7;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Aptos', sans-serif;
-            font-weight: 700;
-        }
+        body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.45; background: var(--brand-blue); }
+        h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
 
         nav {
             position: fixed;
@@ -46,152 +31,148 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1.2rem 5%;
+            padding: 0.6rem 5%;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 42px; width: auto; }
+        .nav-links { display: flex; gap: 0.7rem; list-style: none; flex-wrap: wrap; }
         .nav-links a {
             text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--brand-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--brand-blue);
+            border-radius: 50px;
+            padding: 0.4rem 1.1rem;
+            transition: all 0.25s ease;
+            display: inline-block;
         }
+        .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--ocean-deep);
-        }
+        .main-content { margin-top: 64px; padding: 1.1rem 5%; }
+        .container { max-width: 1350px; margin: 0 auto; }
 
-        .main-content {
-            margin-top: 80px;
-            padding: 5rem 5%;
-            min-height: calc(100vh - 200px);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .page-title {
-            font-size: 3.5rem;
-            color: var(--ocean-deep);
-            margin-bottom: 4rem;
-            text-align: center;
-        }
+        .page-title { font-size: 1.6rem; color: var(--charcoal); margin-bottom: 0.7rem; text-align: center; }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 170px;
+        }
+
+        @media (max-width: 700px) {
+            .services-grid { margin-top: 90px; }
         }
 
         .service-block {
-            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-light) 100%);
-            padding: 3rem;
-            border-radius: 20px;
-            color: var(--white);
+            background: var(--brand-green);
+            padding: 1rem 1.3rem;
+            border-radius: 16px;
+            color: var(--charcoal);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
         .service-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+            color: var(--charcoal);
         }
 
         .service-intro {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+            font-size: 0.82rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.35;
+        }
+
+        .service-include {
+            font-size: 0.82rem;
+            margin-bottom: 0.3rem;
         }
 
         .service-list {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .service-list li {
-            padding: 0.8rem 0;
-            padding-left: 2rem;
+            padding: 0.18rem 0;
+            padding-left: 1.3rem;
             position: relative;
+            font-size: 0.78rem;
+            line-height: 1.3;
         }
 
         .service-list li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--sand-warm);
+            color: var(--brand-blue);
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 0.9rem;
         }
 
-        .discount-note {
-            background: rgba(255,255,255,0.15);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border-left: 3px solid var(--sand-warm);
+        .service-footnote {
+            font-style: italic;
+            font-size: 0.78rem;
+            opacity: 0.85;
         }
 
-        footer {
-            background: var(--charcoal);
-            color: var(--white);
+        .discount-banner {
+            max-width: 1000px;
+            margin: 1rem auto 0;
+            padding: 1rem 1.6rem;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
+            border-radius: 18px;
+            color: var(--charcoal);
             text-align: center;
-            padding: 3rem 5%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .footer-text {
-            opacity: 0.7;
-            font-size: 0.95rem;
+        .discount-banner h2 {
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .discount-banner > p {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .discount-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0.4rem auto 0;
+        }
+
+        .discount-stats .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .discount-stats .stat-label {
+            font-size: 0.82rem;
+        }
+
+        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
+        .footer-text { opacity: 0.75; font-size: 0.78rem; }
+
+        @media (max-width: 900px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .discount-stats { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .page-title {
-                font-size: 2.5rem;
-            }
+            .nav-links { display: none; }
+            .page-title { font-size: 1.5rem; }
         }
-    
-        
-        .logo-container {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .logo-text {
-            font-family: 'Aptos', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a5f7a;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-        }
+
+        .logo-container { text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
 
         /* Mobile Menu */
         .mobile-menu-toggle {
@@ -199,7 +180,7 @@
             background: none;
             border: none;
             font-size: 1.8rem;
-            color: var(--ocean-deep);
+            color: var(--brand-blue);
             cursor: pointer;
             padding: 0.5rem;
         }
@@ -207,7 +188,7 @@
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 80px;
+            top: 64px;
             left: 0;
             right: 0;
             background: white;
@@ -215,19 +196,9 @@
             z-index: 999;
         }
 
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-            padding: 1rem 0;
-        }
-
-        .mobile-menu ul li {
-            border-bottom: 1px solid var(--grey-light);
-        }
-
+        .mobile-menu.active { display: block; }
+        .mobile-menu ul { list-style: none; padding: 1rem 0; }
+        .mobile-menu ul li { border-bottom: 1px solid #eee; }
         .mobile-menu ul li a {
             display: block;
             padding: 1rem 5%;
@@ -236,50 +207,21 @@
             font-weight: 500;
             transition: background 0.3s;
         }
-
         .mobile-menu ul li a:hover,
-        .mobile-menu ul li a.active {
-            background: var(--grey-light);
-            color: var(--ocean-deep);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-        }
+        .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
 
         /* Reviews */
         .reviews-widget {
             position: fixed;
-            top: 100px;
+            top: 78px;
             left: 20px;
-            width: 300px;
+            width: 280px;
             max-width: calc(100vw - 40px);
-            background: #74adfe;
+            background: var(--brand-green);
             border-radius: 16px;
-            padding: 1.6rem 1.6rem 1.2rem;
+            padding: 1.4rem 1.4rem 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
             z-index: 500;
-        }
-
-        .reviews-banner-card {
-            position: relative;
-            max-width: 560px;
-            margin: 0 auto 2rem;
-            background: #74adfe;
-            border-radius: 18px;
-            padding: 2.2rem 2.2rem 1.7rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .reviews-banner-card .review-text {
-            font-size: 1.05rem;
         }
 
         .reviews-close {
@@ -296,26 +238,17 @@
             transition: opacity 0.2s ease;
         }
 
-        .reviews-close:hover {
-            opacity: 0.85;
-        }
+        .reviews-close:hover { opacity: 0.85; }
 
         .reviews-mark {
-            font-size: 2.4rem;
-            font-family: Georgia, serif;
+            font-size: 2.2rem;
             color: rgba(42, 42, 42, 0.35);
             line-height: 1;
             margin-bottom: -0.2rem;
         }
 
-        .review-slide {
-            display: none;
-            animation: reviewFade 0.6s ease;
-        }
-
-        .review-slide.active {
-            display: block;
-        }
+        .review-slide { display: none; animation: reviewFade 0.6s ease; }
+        .review-slide.active { display: block; }
 
         @keyframes reviewFade {
             from { opacity: 0; }
@@ -323,11 +256,11 @@
         }
 
         .review-text {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.5;
-            margin-bottom: 0.6rem;
+            line-height: 1.45;
+            margin-bottom: 0.5rem;
         }
 
         .review-author {
@@ -335,18 +268,10 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.82rem;
+            font-size: 0.78rem;
         }
 
-        .reviews-dots {
-            display: flex;
-            gap: 0.4rem;
-            margin-top: 0.9rem;
-        }
-
-        .reviews-banner-card .reviews-dots {
-            justify-content: center;
-        }
+        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
 
         .review-dot {
             width: 7px;
@@ -359,22 +284,11 @@
             transition: background 0.3s ease;
         }
 
-        .review-dot.active {
-            background: var(--charcoal);
-        }
+        .review-dot.active { background: var(--charcoal); }
 
         @media (max-width: 700px) {
-            .reviews-widget {
-                width: 190px;
-                top: 88px;
-                left: 10px;
-                padding: 1rem 1rem 0.8rem;
-            }
-
-            .reviews-widget .reviews-mark {
-                font-size: 1.8rem;
-            }
-
+            .reviews-widget { width: 190px; top: 70px; left: 10px; padding: 1rem 1rem 0.8rem; }
+            .reviews-widget .reviews-mark { font-size: 1.8rem; }
             .reviews-widget .review-text {
                 font-size: 0.8rem;
                 -webkit-line-clamp: 4;
@@ -382,16 +296,11 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
-
-            .reviews-widget .review-author {
-                font-size: 0.72rem;
-            }
+            .reviews-widget .review-author { font-size: 0.72rem; }
         }
 
         @media (max-width: 420px) {
-            .reviews-widget {
-                width: 160px;
-            }
+            .reviews-widget { width: 160px; }
         }
     </style>
 </head>
@@ -400,7 +309,7 @@
         <div class="nav-container">
             <a href="index.html" class="logo-container">
                 <img src="images/karoka-logo.png" alt="Karoka Logo" class="logo-img">
-                <span class="logo-text">KAROKA</span>
+                <span style="font-size:1.5rem; font-weight:700; color:var(--brand-blue); letter-spacing:0.05em;">KAROKA</span>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -416,63 +325,61 @@
     </nav>
 
     <div class="reviews-widget" id="reviewsWidget">
-            <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
-            <div class="reviews-mark">&ldquo;</div>
-            <div class="reviews-slides">
-                <blockquote class="review-slide active">
-                    <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
-                    <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
-                    <cite class="review-author">Mylene &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
-                    <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
-                    <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
-                    <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
-                </blockquote>
-            </div>
-            <div class="reviews-dots">
-                <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
-                <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
-                <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
-                <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
-                <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
-            </div>
+        <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
+        <div class="reviews-mark">&ldquo;</div>
+        <div class="reviews-slides">
+            <blockquote class="review-slide active">
+                <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                <cite class="review-author">Mylene &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+            </blockquote>
+        </div>
+        <div class="reviews-dots">
+            <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
+            <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
+            <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
+            <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
+            <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
+        </div>
     </div>
 
-    
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="index.html" >Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="services.html" class="active">Services</a></li>
-            <li><a href="rates.html" >Rates</a></li>
-            <li><a href="policies.html" >Policies</a></li>
-            <li><a href="about.html" >About</a></li>
-            <li><a href="contact.html" >Contact</a></li>
+            <li><a href="rates.html">Rates</a></li>
+            <li><a href="policies.html">Policies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
-    
+
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
-        
-        // Close mobile menu when clicking outside
+
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
             const toggle = document.querySelector('.mobile-menu-toggle');
-            if (menu.classList.contains('active') && 
-                !menu.contains(event.target) && 
+            if (menu.classList.contains('active') &&
+                !menu.contains(event.target) &&
                 !toggle.contains(event.target)) {
                 menu.classList.remove('active');
             }
@@ -484,30 +391,28 @@
             <h1 class="page-title">SERVICES</h1>
 
             <div class="services-grid">
-                <!-- English Tutoring -->
                 <div class="service-block">
                     <h2 class="service-title">English Tutoring</h2>
-                    <p class="service-intro">Karoka offers personalised English tutoring programmes designed to help learners communicate clearly, confidently, and accurately in English. All courses are aligned with the CEFR (Common European Framework of Reference for Languages) to ensure measurable progress.</p>
-                    
-                    <p style="margin-bottom: 1rem;"><strong>English tutoring services include:</strong></p>
+                    <p class="service-intro">Personalised English tutoring to help learners communicate clearly, confidently, and accurately. All courses are aligned with the CEFR (Common European Framework of Reference for Languages).</p>
+
+                    <p class="service-include"><strong>Includes:</strong></p>
                     <ul class="service-list">
                         <li>One-to-one English lessons</li>
                         <li>Pair and small-group English classes</li>
                         <li>CEFR level progression (A2+, B1, B2, C1, C2)</li>
-                        <li>Exam and certification preparation (IELTS, Cambridge English, Pearson PTE, Ev@lang, French Baccalaureate, CNED)</li>
+                        <li>Exam and certification prep (IELTS, Cambridge English, Pearson PTE, Ev@lang, French Baccalaureate, CNED)</li>
                         <li>Business English and service-industry English</li>
-                        <li>Classroom teaching, homeschooling, and online English lessons</li>
+                        <li>Classroom, homeschooling, and online lessons</li>
                     </ul>
 
-                    <p style="font-style: italic;">Each programme is fully personalised following a level assessment and consultation.</p>
+                    <p class="service-footnote">Each programme is fully personalised following a level assessment and consultation.</p>
                 </div>
 
-                <!-- Educational Consultancy -->
                 <div class="service-block">
-                    <h2 class="service-title">Educational Consultancy Services</h2>
-                    <p class="service-intro">In addition to tutoring, Karoka provides professional educational consultancy services for schools, NGOs, and institutions in Madagascar and beyond.</p>
-                    
-                    <p style="margin-bottom: 1rem;"><strong>Consultancy services include:</strong></p>
+                    <h2 class="service-title">Educational Consultancy</h2>
+                    <p class="service-intro">Professional educational consultancy services for schools, NGOs, and institutions in Madagascar and beyond.</p>
+
+                    <p class="service-include"><strong>Includes:</strong></p>
                     <ul class="service-list">
                         <li>English curriculum development</li>
                         <li>Teacher training and pedagogy support</li>
@@ -515,22 +420,21 @@
                         <li>Academic and professional proofreading & editing</li>
                     </ul>
 
-                    <p style="font-style: italic; margin-top: 2rem;">Consultancy projects are designed around your institutional context and objectives.</p>
+                    <p class="service-footnote">Consultancy projects are designed around your institutional context and objectives.</p>
                 </div>
             </div>
 
-            <!-- NGO Discounts - Applicable to Both Services -->
-            <div style="max-width: 900px; margin: 5rem auto 0; padding: 3rem; background: linear-gradient(135deg, var(--coral) 0%, #d96941 100%); border-radius: 20px; color: white; text-align: center; box-shadow: 0 10px 40px rgba(230, 126, 80, 0.3);">
-                <h2 style="color: white; font-size: 2rem; margin-bottom: 1.5rem;">🎁 Special NGO Discounts</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Karoka is committed to educational development and offers reduced rates for <strong>both</strong> English tutoring and consultancy services:</p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div class="discount-banner">
+                <h2>🎁 Special NGO Discounts</h2>
+                <p>Karoka offers reduced rates for <strong>both</strong> English tutoring and consultancy services:</p>
+                <div class="discount-stats">
                     <div>
-                        <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">40% OFF</p>
-                        <p style="font-size: 1.1rem;">Local NGOs</p>
+                        <p class="stat-value">40% OFF</p>
+                        <p class="stat-label">Local NGOs</p>
                     </div>
                     <div>
-                        <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">20% OFF</p>
-                        <p style="font-size: 1.1rem;">International NGOs</p>
+                        <p class="stat-value">20% OFF</p>
+                        <p class="stat-label">International NGOs</p>
                     </div>
                 </div>
             </div>
@@ -539,7 +443,7 @@
 
     <footer>
         <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
-        <p class="footer-text" style="margin-top: 1rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
+        <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
     </footer>
     <script>
         // Reviews carousel

@@ -12,138 +12,125 @@
     <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ocean-deep: #1a5f7a;
-            --ocean-light: #57c5b6;
-            --sand-warm: #f4e4c1;
-            --coral: #e67e50;
+            --brand-blue: #7DA4ED;
+            --brand-green: #35AF78;
             --white: #ffffff;
             --charcoal: #2a2a2a;
-            --grey-light: #f8f9fa;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
+        body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.45; background: var(--brand-blue); }
         h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
-        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 1.2rem 5%; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 0.6rem 5%; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo-img { height: 50px; width: auto; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--ocean-deep); }
-        .main-content { margin-top: 80px; padding: 5rem 5%; min-height: calc(100vh - 200px); }
-        .container { max-width: 1100px; margin: 0 auto; }
-        .page-title { font-size: 3.5rem; color: var(--ocean-deep); margin-bottom: 3rem; text-align: center; }
-        .policy-section { margin-bottom: 3rem; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .policy-section h3 { color: var(--ocean-deep); font-size: 1.6rem; margin-bottom: 1.2rem; }
-        .policy-section ul { padding-left: 1.5rem; }
-        .policy-section li { margin-bottom: 0.8rem; }
-        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 3rem 5%; }
-        .footer-text { opacity: 0.7; font-size: 0.95rem; }
-        @media (max-width: 768px) { .nav-links { display: none; } .page-title { font-size: 2.5rem; } }
-    
-        
-        .logo-container {
+        .logo-img { height: 42px; width: auto; }
+        .nav-links { display: flex; gap: 0.7rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a {
             text-decoration: none;
+            color: var(--brand-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--brand-blue);
+            border-radius: 50px;
+            padding: 0.4rem 1.1rem;
+            transition: all 0.25s ease;
+            display: inline-block;
+        }
+        .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
+
+        .main-content { margin-top: 64px; padding: 1rem 5%; }
+        .container { max-width: 1250px; margin: 0 auto; }
+        .page-title { font-size: 1.3rem; color: var(--charcoal); margin-bottom: 0.7rem; text-align: center; }
+        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
+        .footer-text { opacity: 0.75; font-size: 0.78rem; }
+
+        .logo-container { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+
+        .policy-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 1.2rem;
+            align-items: start;
+        }
+
+        .policy-nav-list {
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 185px;
         }
-        
-        .logo-text {
+
+        .policy-nav-item {
+            background: var(--brand-green);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
             font-family: 'Aptos', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a5f7a;
-            letter-spacing: 0.05em;
-            text-decoration: none;
+            width: 100%;
         }
+
+        .policy-nav-item:hover { transform: translateX(3px); }
+
+        .policy-nav-item.active {
+            background: var(--brand-blue);
+            border-color: var(--charcoal);
+        }
+
+        .policy-content-panel {
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
+            border-radius: 16px;
+            padding: 1.2rem 1.7rem;
+            min-height: 380px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .policy-content { display: none; animation: fadeIn 0.3s ease; }
+        .policy-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .policy-content h3 { font-size: 1.15rem; margin-bottom: 0.7rem; color: var(--charcoal); }
+        .policy-content ul { padding-left: 1.3rem; font-size: 0.85rem; }
+        .policy-content li { margin-bottom: 0.55rem; }
+        .policy-content ul ul { margin-top: 0.4rem; }
+
+        @media (max-width: 900px) {
+            .policy-layout { grid-template-columns: 1fr; }
+            .policy-nav-list { flex-direction: row; flex-wrap: wrap; margin-top: 0; }
+            .policy-nav-item { width: auto; }
+        }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .page-title { font-size: 1.2rem; } }
 
         /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--ocean-deep);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-            padding: 1rem 0;
-        }
-
-        .mobile-menu ul li {
-            border-bottom: 1px solid var(--grey-light);
-        }
-
-        .mobile-menu ul li a {
-            display: block;
-            padding: 1rem 5%;
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        .mobile-menu ul li a:hover,
-        .mobile-menu ul li a.active {
-            background: var(--grey-light);
-            color: var(--ocean-deep);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-        }
+        .mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--brand-blue); cursor: pointer; padding: 0.5rem; }
+        .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 999; }
+        .mobile-menu.active { display: block; }
+        .mobile-menu ul { list-style: none; padding: 1rem 0; }
+        .mobile-menu ul li { border-bottom: 1px solid #eee; }
+        .mobile-menu ul li a { display: block; padding: 1rem 5%; text-decoration: none; color: var(--charcoal); font-weight: 500; transition: background 0.3s; }
+        .mobile-menu ul li a:hover, .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
 
         /* Reviews */
         .reviews-widget {
             position: fixed;
-            top: 100px;
+            top: 78px;
             left: 20px;
-            width: 300px;
+            width: 280px;
             max-width: calc(100vw - 40px);
-            background: #74adfe;
+            background: var(--brand-green);
             border-radius: 16px;
-            padding: 1.6rem 1.6rem 1.2rem;
+            padding: 1.4rem 1.4rem 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
             z-index: 500;
-        }
-
-        .reviews-banner-card {
-            position: relative;
-            max-width: 560px;
-            margin: 0 auto 2rem;
-            background: #74adfe;
-            border-radius: 18px;
-            padding: 2.2rem 2.2rem 1.7rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .reviews-banner-card .review-text {
-            font-size: 1.05rem;
         }
 
         .reviews-close {
@@ -160,26 +147,17 @@
             transition: opacity 0.2s ease;
         }
 
-        .reviews-close:hover {
-            opacity: 0.85;
-        }
+        .reviews-close:hover { opacity: 0.85; }
 
         .reviews-mark {
-            font-size: 2.4rem;
-            font-family: Georgia, serif;
+            font-size: 2.2rem;
             color: rgba(42, 42, 42, 0.35);
             line-height: 1;
             margin-bottom: -0.2rem;
         }
 
-        .review-slide {
-            display: none;
-            animation: reviewFade 0.6s ease;
-        }
-
-        .review-slide.active {
-            display: block;
-        }
+        .review-slide { display: none; animation: reviewFade 0.6s ease; }
+        .review-slide.active { display: block; }
 
         @keyframes reviewFade {
             from { opacity: 0; }
@@ -187,11 +165,11 @@
         }
 
         .review-text {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.5;
-            margin-bottom: 0.6rem;
+            line-height: 1.45;
+            margin-bottom: 0.5rem;
         }
 
         .review-author {
@@ -199,18 +177,10 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.82rem;
+            font-size: 0.78rem;
         }
 
-        .reviews-dots {
-            display: flex;
-            gap: 0.4rem;
-            margin-top: 0.9rem;
-        }
-
-        .reviews-banner-card .reviews-dots {
-            justify-content: center;
-        }
+        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
 
         .review-dot {
             width: 7px;
@@ -223,22 +193,11 @@
             transition: background 0.3s ease;
         }
 
-        .review-dot.active {
-            background: var(--charcoal);
-        }
+        .review-dot.active { background: var(--charcoal); }
 
         @media (max-width: 700px) {
-            .reviews-widget {
-                width: 190px;
-                top: 88px;
-                left: 10px;
-                padding: 1rem 1rem 0.8rem;
-            }
-
-            .reviews-widget .reviews-mark {
-                font-size: 1.8rem;
-            }
-
+            .reviews-widget { width: 190px; top: 70px; left: 10px; padding: 1rem 1rem 0.8rem; }
+            .reviews-widget .reviews-mark { font-size: 1.8rem; }
             .reviews-widget .review-text {
                 font-size: 0.8rem;
                 -webkit-line-clamp: 4;
@@ -246,16 +205,11 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
-
-            .reviews-widget .review-author {
-                font-size: 0.72rem;
-            }
+            .reviews-widget .review-author { font-size: 0.72rem; }
         }
 
         @media (max-width: 420px) {
-            .reviews-widget {
-                width: 160px;
-            }
+            .reviews-widget { width: 160px; }
         }
     </style>
 </head>
@@ -264,7 +218,7 @@
         <div class="nav-container">
             <a href="index.html" class="logo-container">
                 <img src="images/karoka-logo.png" alt="Karoka Logo" class="logo-img">
-                <span class="logo-text">KAROKA</span>
+                <span style="font-size:1.5rem; font-weight:700; color:var(--brand-blue); letter-spacing:0.05em;">KAROKA</span>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -280,63 +234,61 @@
     </nav>
 
     <div class="reviews-widget" id="reviewsWidget">
-            <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
-            <div class="reviews-mark">&ldquo;</div>
-            <div class="reviews-slides">
-                <blockquote class="review-slide active">
-                    <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
-                    <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
-                    <cite class="review-author">Mylene &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
-                    <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
-                    <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
-                    <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
-                </blockquote>
-            </div>
-            <div class="reviews-dots">
-                <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
-                <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
-                <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
-                <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
-                <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
-            </div>
+        <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
+        <div class="reviews-mark">&ldquo;</div>
+        <div class="reviews-slides">
+            <blockquote class="review-slide active">
+                <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                <cite class="review-author">Mylene &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
+            </blockquote>
+            <blockquote class="review-slide">
+                <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+            </blockquote>
+        </div>
+        <div class="reviews-dots">
+            <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
+            <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
+            <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
+            <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
+            <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
+        </div>
     </div>
 
-    
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="services.html" >Services</a></li>
-            <li><a href="rates.html" >Rates</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="rates.html">Rates</a></li>
             <li><a href="policies.html" class="active">Policies</a></li>
-            <li><a href="about.html" >About</a></li>
-            <li><a href="contact.html" >Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
-    
+
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
-        
-        // Close mobile menu when clicking outside
+
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
             const toggle = document.querySelector('.mobile-menu-toggle');
-            if (menu.classList.contains('active') && 
-                !menu.contains(event.target) && 
+            if (menu.classList.contains('active') &&
+                !menu.contains(event.target) &&
                 !toggle.contains(event.target)) {
                 menu.classList.remove('active');
             }
@@ -347,119 +299,138 @@
         <div class="container">
             <h1 class="page-title">POLICIES, SAFEGUARDING AND TERMS AND CONDITIONS</h1>
 
-            <div class="policy-section">
-                <h3>1. Parental Consent & Safeguarding</h3>
-                <ul>
-                    <li>The parents/guardians of under 18s must sign a permission form for their child to attend lessons.</li>
-                    <li>For safeguarding reasons, at least one responsible adult must be present on the premises during lessons.</li>
-                    <li>Parents/guardians must inform the tutor of any relevant medical conditions or special needs.</li>
-                </ul>
-            </div>
+            <div class="policy-layout">
+                <div class="policy-nav-list" id="policyNavList">
+                    <button class="policy-nav-item active" onclick="showPolicy('policy-1', this)">1. Parental Consent & Safeguarding</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-2', this)">2. Lesson Materials & IP</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-3', this)">3. Pricing & Exclusions</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-4', this)">4. Payment</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-5', this)">5. Cancellation & Postponement</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-6', this)">6. Late Arrivals</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-7', this)">7. Behaviour & Respect</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-8', this)">8. Online Lessons</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-9', this)">9. Confidentiality & Privacy</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-10', this)">10. Force Majeure</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-11', this)">11. Termination</button>
+                    <button class="policy-nav-item" onclick="showPolicy('policy-12', this)">12. Acceptance of Terms</button>
+                </div>
 
-            <div class="policy-section">
-                <h3>2. Lesson Materials & Intellectual Property</h3>
-                <ul>
-                    <li>All lesson content, handouts, worksheets, and resources provided remain the intellectual property of Karoka.</li>
-                    <li>Clients may use materials for personal study only. Reproduction or redistribution is prohibited without permission.</li>
-                </ul>
-            </div>
-
-            <div class="policy-section">
-                <h3>3. Pricing & Exclusions</h3>
-                <ul>
-                    <li>All lesson and consultancy tariffs exclude:
-                        <ul style="margin-top: 0.5rem;">
-                            <li>Travel costs if lessons take place at a venue of your choice</li>
-                            <li>Registration fees for online certification and access to official portals</li>
-                            <li>Printing of official course materials beyond what is reasonably used for the initial training created by the tutor</li>
+                <div class="policy-content-panel">
+                    <div class="policy-content active" id="policy-1">
+                        <h3>1. Parental Consent & Safeguarding</h3>
+                        <ul>
+                            <li>The parents/guardians of under 18s must sign a permission form for their child to attend lessons.</li>
+                            <li>For safeguarding reasons, at least one responsible adult must be present on the premises during lessons.</li>
+                            <li>Parents/guardians must inform the tutor of any relevant medical conditions or special needs.</li>
                         </ul>
-                    </li>
-                    <li>Prices are subject to change, with written notice 30 days in advance. Changes do not affect lessons already paid for.</li>
-                </ul>
-            </div>
+                    </div>
 
-            <div class="policy-section">
-                <h3>4. Payment</h3>
-                <ul>
-                    <li>Accepted payment methods:
-                        <ul style="margin-top: 0.5rem;">
-                            <li>Cash</li>
-                            <li>Mvola (all transaction fees must be included in payment)</li>
-                            <li>Karoka SARLU / BNI Madagascar (details provided upon contract signing)</li>
+                    <div class="policy-content" id="policy-2">
+                        <h3>2. Lesson Materials & Intellectual Property</h3>
+                        <ul>
+                            <li>All lesson content, handouts, worksheets, and resources provided remain the intellectual property of Karoka.</li>
+                            <li>Clients may use materials for personal study only. Reproduction or redistribution is prohibited without permission.</li>
                         </ul>
-                    </li>
-                    <li>Receipts can be provided</li>
-                </ul>
-            </div>
+                    </div>
 
-            <div class="policy-section">
-                <h3>5. Cancellation & Postponement</h3>
-                <ul>
-                    <li>The cancellation/postponement policy will be strictly followed without exception.</li>
-                    <li>No refunds will be given for cancellations made less than 24 hours in advance.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-3">
+                        <h3>3. Pricing & Exclusions</h3>
+                        <ul>
+                            <li>All lesson and consultancy tariffs exclude:
+                                <ul style="margin-top: 0.4rem;">
+                                    <li>Travel costs if lessons take place at a venue of your choice</li>
+                                    <li>Registration fees for online certification and access to official portals</li>
+                                    <li>Printing of official course materials beyond what is reasonably used for the initial training created by the tutor</li>
+                                </ul>
+                            </li>
+                            <li>Prices are subject to change, with written notice 30 days in advance. Changes do not affect lessons already paid for.</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>6. Late Arrivals</h3>
-                <ul>
-                    <li>Lessons start at the scheduled time. If a student arrives late, the lesson will still end at the original finishing time. Lost time cannot be made up.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-4">
+                        <h3>4. Payment</h3>
+                        <ul>
+                            <li>Accepted payment methods:
+                                <ul style="margin-top: 0.4rem;">
+                                    <li>Cash</li>
+                                    <li>Mvola (all transaction fees must be included in payment)</li>
+                                    <li>Karoka SARLU / BNI Madagascar (details provided upon contract signing)</li>
+                                </ul>
+                            </li>
+                            <li>Receipts can be provided</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>7. Behaviour & Respect</h3>
-                <ul>
-                    <li>Students are expected to behave respectfully during lessons.</li>
-                    <li>Repeated disruptive behaviour may lead to lesson suspension or termination without refund.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-5">
+                        <h3>5. Cancellation & Postponement</h3>
+                        <ul>
+                            <li>The cancellation/postponement policy will be strictly followed without exception.</li>
+                            <li>No refunds will be given for cancellations made less than 24 hours in advance.</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>8. Online Lessons (if applicable)</h3>
-                <ul>
-                    <li>Students must have a working device, stable internet, and functional camera/microphone.</li>
-                    <li>Parents must monitor minors during online lessons.</li>
-                    <li>Recording lessons by students is not allowed without explicit permission.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-6">
+                        <h3>6. Late Arrivals</h3>
+                        <ul>
+                            <li>Lessons start at the scheduled time. If a student arrives late, the lesson will still end at the original finishing time. Lost time cannot be made up.</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>9. Confidentiality & Privacy</h3>
-                <ul>
-                    <li>Personal information (names, contact details, student work) will be kept strictly confidential.</li>
-                    <li>Photos, recordings, or student work will not be shared publicly without written consent.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-7">
+                        <h3>7. Behaviour & Respect</h3>
+                        <ul>
+                            <li>Students are expected to behave respectfully during lessons.</li>
+                            <li>Repeated disruptive behaviour may lead to lesson suspension or termination without refund.</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>10. Force Majeure</h3>
-                <ul>
-                    <li>The tutor is not liable for disruptions caused by unforeseen circumstances (e.g., political unrest, natural disasters, illness/death in the family, internet outages).</li>
-                    <li>Lessons may be rescheduled in good faith, but no refunds are guaranteed.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-8">
+                        <h3>8. Online Lessons (if applicable)</h3>
+                        <ul>
+                            <li>Students must have a working device, stable internet, and functional camera/microphone.</li>
+                            <li>Parents must monitor minors during online lessons.</li>
+                            <li>Recording lessons by students is not allowed without explicit permission.</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>11. Termination</h3>
-                <ul>
-                    <li>Either party may terminate the agreement with written notice (suggested: 7 days).</li>
-                    <li>Prepaid packages may be partially refundable at the tutor's discretion, depending on notice given.</li>
-                </ul>
-            </div>
+                    <div class="policy-content" id="policy-9">
+                        <h3>9. Confidentiality & Privacy</h3>
+                        <ul>
+                            <li>Personal information (names, contact details, student work) will be kept strictly confidential.</li>
+                            <li>Photos, recordings, or student work will not be shared publicly without written consent.</li>
+                        </ul>
+                    </div>
 
-            <div class="policy-section">
-                <h3>12. Acceptance of Terms</h3>
-                <ul>
-                    <li>By signing the tutoring contract or attending lessons, the client/parent agrees to all the above terms and conditions.</li>
-                </ul>
+                    <div class="policy-content" id="policy-10">
+                        <h3>10. Force Majeure</h3>
+                        <ul>
+                            <li>The tutor is not liable for disruptions caused by unforeseen circumstances (e.g., political unrest, natural disasters, illness/death in the family, internet outages).</li>
+                            <li>Lessons may be rescheduled in good faith, but no refunds are guaranteed.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-content" id="policy-11">
+                        <h3>11. Termination</h3>
+                        <ul>
+                            <li>Either party may terminate the agreement with written notice (suggested: 7 days).</li>
+                            <li>Prepaid packages may be partially refundable at the tutor's discretion, depending on notice given.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-content" id="policy-12">
+                        <h3>12. Acceptance of Terms</h3>
+                        <ul>
+                            <li>By signing the tutoring contract or attending lessons, the client/parent agrees to all the above terms and conditions.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
         <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
-        <p class="footer-text" style="margin-top: 1rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
+        <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
     </footer>
     <script>
         // Reviews carousel
@@ -494,6 +465,21 @@
 
             if (slides.length) restartAuto();
         })();
+    </script>
+
+    <script>
+        function showPolicy(policyId, btn) {
+            document.querySelectorAll('.policy-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.policy-nav-item').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(policyId).classList.add('active');
+            if (btn) {
+                btn.classList.add('active');
+            } else {
+                var fallback = document.querySelector('.policy-nav-item[onclick*="' + policyId + '"]');
+                if (fallback) fallback.classList.add('active');
+            }
+        }
     </script>
 
 </body>

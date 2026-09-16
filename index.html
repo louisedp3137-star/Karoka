@@ -14,25 +14,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ocean-deep: #1a5f7a;
-            --ocean-light: #57c5b6;
-            --sand-warm: #f4e4c1;
-            --coral: #e67e50;
+            --brand-blue: #7DA4ED;
+            --brand-green: #35AF78;
             --white: #ffffff;
             --charcoal: #2a2a2a;
-            --grey-light: #f8f9fa;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Aptos', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Aptos', sans-serif;
             color: var(--charcoal);
-            line-height: 1.7;
+            line-height: 1.5;
+            background: var(--brand-blue);
         }
 
         h1, h2, h3 {
@@ -46,7 +49,7 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1.2rem 5%;
+            padding: 0.7rem 5%;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
@@ -55,86 +58,78 @@
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
-        }
-
-        .logo-img {
-            height: 50px;
-            width: auto;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-        }
-        
-        .logo-text {
-            font-family: 'Aptos', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a5f7a;
-            letter-spacing: 0.05em;
-            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 0.8rem;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--brand-blue);
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 2px solid var(--brand-blue);
+            border-radius: 50px;
+            padding: 0.45rem 1.2rem;
+            transition: all 0.25s ease;
+            display: inline-block;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: var(--ocean-deep);
+            background: var(--brand-blue);
+            color: var(--white);
         }
 
-        /* Hero Section - Compact */
+        /* Hero Section - Compact, horizontal */
         .hero {
-            margin-top: 80px;
-            padding: 2rem 5% 1.5rem;
-            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-light) 100%);
+            margin-top: 62px;
+            padding: 0.7rem 5%;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
             text-align: center;
         }
 
+        .hero-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
         .hero-logo {
-            width: 240px;
-            max-width: 60%;
-            margin: 0 auto 1rem;
+            width: 360px;
+            flex-shrink: 0;
+        }
+
+        .hero-text {
+            text-align: left;
         }
 
         .hero-title {
-            font-size: 1.8rem;
-            color: var(--white);
-            margin-bottom: 0.4rem;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
             line-height: 1.2;
         }
 
         .hero-subtitle {
             font-size: 1rem;
-            color: var(--sand-warm);
-            margin-bottom: 0;
-        }
-
-        .hero-tagline {
-            font-size: 1.2rem;
-            color: var(--white);
-            font-style: italic;
+            color: var(--charcoal);
+            opacity: 0.8;
             margin-bottom: 0;
         }
 
         /* Features Section - Compact Cards */
         .features {
-            padding: 2rem 5%;
-            background: var(--grey-light);
+            padding: 0.9rem 5%;
+            background: transparent;
         }
 
         .features-container {
@@ -145,78 +140,87 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .feature-card {
-            background: var(--white);
-            padding: 1.2rem 0.8rem;
+            background: var(--brand-green);
+            padding: 0.9rem 0.7rem;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--ocean-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--brand-blue);
             transition: all 0.3s ease;
             text-align: center;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.14);
         }
 
         .feature-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.6rem;
+            font-size: 1.7rem;
+            margin-bottom: 0.35rem;
         }
 
         .feature-title {
-            font-size: 0.95rem;
-            color: var(--ocean-deep);
-            margin-bottom: 0.4rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
         }
 
         .feature-text {
             color: var(--charcoal);
-            opacity: 0.85;
-            font-size: 0.8rem;
-            line-height: 1.3;
+            opacity: 0.9;
+            font-size: 0.72rem;
+            line-height: 1.25;
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 4rem 5%;
-            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-light) 100%);
+            padding: 0.9rem 5%;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
             text-align: center;
+        }
+
+        .cta-tagline {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--coral);
-            color: var(--white);
+            padding: 0.75rem 2.2rem;
+            background: var(--brand-green);
+            color: var(--charcoal);
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
+            font-weight: 700;
+            font-size: 1.05rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(230, 126, 80, 0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+            margin-top: 0.5rem;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(230, 126, 80, 0.4);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.24);
         }
 
         footer {
             background: var(--charcoal);
             color: var(--white);
             text-align: center;
-            padding: 3rem 5%;
+            padding: 0.7rem 5%;
         }
 
         .footer-text {
-            opacity: 0.7;
-            font-size: 0.95rem;
+            opacity: 0.75;
+            font-size: 0.78rem;
         }
 
         /* Mobile Menu */
@@ -225,7 +229,7 @@
             background: none;
             border: none;
             font-size: 1.8rem;
-            color: var(--ocean-deep);
+            color: var(--brand-blue);
             cursor: pointer;
             padding: 0.5rem;
         }
@@ -233,7 +237,7 @@
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 80px;
+            top: 62px;
             left: 0;
             right: 0;
             background: white;
@@ -251,7 +255,7 @@
         }
 
         .mobile-menu ul li {
-            border-bottom: 1px solid var(--grey-light);
+            border-bottom: 1px solid #eee;
         }
 
         .mobile-menu ul li a {
@@ -265,8 +269,8 @@
 
         .mobile-menu ul li a:hover,
         .mobile-menu ul li a.active {
-            background: var(--grey-light);
-            color: var(--ocean-deep);
+            background: #f0f4fb;
+            color: var(--brand-blue);
         }
 
         @media (max-width: 1200px) {
@@ -279,21 +283,21 @@
             .nav-links {
                 display: none;
             }
-            
+
             .mobile-menu-toggle {
                 display: block;
             }
 
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
             .hero-title {
-                font-size: 1.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-tagline {
-                font-size: 1.1rem;
+                font-size: 1.4rem;
             }
 
             .features-grid {
@@ -301,18 +305,14 @@
             }
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         /* Reviews */
         .reviews-widget {
             position: fixed;
-            top: 100px;
+            top: 80px;
             left: 20px;
             width: 300px;
             max-width: calc(100vw - 40px);
-            background: #74adfe;
+            background: var(--brand-green);
             border-radius: 16px;
             padding: 1.6rem 1.6rem 1.2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
@@ -321,23 +321,29 @@
 
         .reviews-banner-card {
             position: relative;
-            max-width: 560px;
-            margin: 0 auto 2rem;
-            background: #74adfe;
+            max-width: 520px;
+            margin: 0 auto 0.8rem;
+            background: var(--brand-green);
             border-radius: 18px;
-            padding: 2.2rem 2.2rem 1.7rem;
+            padding: 0.8rem 1.8rem 0.7rem;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
         }
 
         .reviews-banner-card .review-text {
-            font-size: 1.05rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .reviews-banner-card .reviews-mark {
+            font-size: 1.6rem;
+            margin-bottom: -0.3rem;
         }
 
         .reviews-close {
             position: absolute;
-            top: 0.6rem;
-            right: 0.9rem;
+            top: 0.5rem;
+            right: 0.8rem;
             background: none;
             border: none;
             font-size: 1.4rem;
@@ -354,7 +360,6 @@
 
         .reviews-mark {
             font-size: 2.4rem;
-            font-family: Georgia, serif;
             color: rgba(42, 42, 42, 0.35);
             line-height: 1;
             margin-bottom: -0.2rem;
@@ -393,10 +398,7 @@
         .reviews-dots {
             display: flex;
             gap: 0.4rem;
-            margin-top: 0.9rem;
-        }
-
-        .reviews-banner-card .reviews-dots {
+            margin-top: 0.5rem;
             justify-content: center;
         }
 
@@ -406,7 +408,7 @@
             padding: 0;
             border: none;
             border-radius: 50%;
-            background: rgba(42, 42, 42, 0.25);
+            background: rgba(42, 42, 42, 0.3);
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -417,14 +419,32 @@
 
         @media (max-width: 700px) {
             .reviews-widget {
-                width: 220px;
-                top: 90px;
-                left: 12px;
-                padding: 1.2rem 1.2rem 0.9rem;
+                width: 190px;
+                top: 70px;
+                left: 10px;
+                padding: 1rem 1rem 0.8rem;
             }
 
-            .review-text {
-                font-size: 0.88rem;
+            .reviews-widget .reviews-mark {
+                font-size: 1.8rem;
+            }
+
+            .reviews-widget .review-text {
+                font-size: 0.8rem;
+                -webkit-line-clamp: 4;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .reviews-widget .review-author {
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .reviews-widget {
+                width: 160px;
             }
         }
     </style>
@@ -432,10 +452,6 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo-container">
-                <img src="images/karoka-logo.png" alt="Karoka Logo" class="logo-img">
-                <span class="logo-text">KAROKA</span>
-            </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -462,8 +478,10 @@
     <section class="hero">
         <div class="hero-content">
             <img src="images/karoka-hero-logo.png" alt="Karoka Full Logo" class="hero-logo">
-            <h1 class="hero-title">English Tutoring & Educational Consultancy</h1>
-            <p class="hero-subtitle">Fort Dauphin (Toalagnaro), Madagascar</p>
+            <div class="hero-text">
+                <h1 class="hero-title">English Tutoring & Educational Consultancy</h1>
+                <p class="hero-subtitle">Fort Dauphin (Toalagnaro), Madagascar</p>
+            </div>
         </div>
     </section>
 
@@ -504,7 +522,7 @@
     </section>
 
     <section class="cta-section">
-        <p style="font-size: 1.8rem; color: white; font-style: italic; margin-bottom: 2rem; font-weight: 500;">Professional. Personalised. Proven results.</p>
+        <p class="cta-tagline">Professional. Personalised. Proven results.</p>
 
         <div class="reviews-banner-card" id="reviewsWidget">
             <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
@@ -540,12 +558,12 @@
             </div>
         </div>
 
-        <a href="contact.html" class="cta-button" style="margin-top: 2rem; display: inline-block;">Get Started Today</a>
+        <a href="contact.html" class="cta-button">Get Started Today</a>
     </section>
 
     <footer>
         <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
-        <p class="footer-text" style="margin-top: 1rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
+        <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
     </footer>
     <script>
         // Reviews carousel
@@ -588,12 +606,12 @@
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
-        
+
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
             const toggle = document.querySelector('.mobile-menu-toggle');
-            if (menu.classList.contains('active') && 
-                !menu.contains(event.target) && 
+            if (menu.classList.contains('active') &&
+                !menu.contains(event.target) &&
                 !toggle.contains(event.target)) {
                 menu.classList.remove('active');
             }
