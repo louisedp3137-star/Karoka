@@ -9,15 +9,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-192.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-blue: #7DA4ED;
             --brand-green: #35AF78;
+            --brand-green-light: #A4DBC2;
             --white: #ffffff;
             --charcoal: #2a2a2a;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
+        html { font-size: 118%; }
         body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.4; background: var(--brand-blue); }
         h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
         nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 0.6rem 5%; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
@@ -39,7 +41,7 @@
 
         .main-content { margin-top: 64px; padding: 1rem 5%; }
         .container { max-width: 1300px; margin: 0 auto; }
-        .page-title { font-size: 1.6rem; color: var(--charcoal); margin-bottom: 0.7rem; text-align: center; }
+        .page-title { font-size: 2.3rem; font-weight: 800; color: var(--charcoal); margin-bottom: 0.9rem; text-align: center; }
         footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
         .footer-text { opacity: 0.75; font-size: 0.78rem; }
 
@@ -47,29 +49,29 @@
 
         .form-card {
             background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
-            padding: 1rem 1.5rem;
+            padding: 1.3rem 1.8rem;
             border-radius: 16px;
             color: var(--charcoal);
-            margin-bottom: 0.9rem;
-            margin-top: 175px;
+            margin-bottom: 1.1rem;
+            margin-top: 235px;
         }
 
         @media (max-width: 700px) {
             .form-card { margin-top: 90px; }
         }
 
-        .form-card h2 { text-align: center; margin-bottom: 0.6rem; font-size: 1.1rem; color: var(--charcoal); }
+        .form-card h2 { text-align: center; margin-bottom: 0.8rem; font-size: 1.4rem; color: var(--charcoal); }
 
-        .form-card form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+        .form-card form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
 
-        label { display: block; margin-bottom: 0.2rem; font-weight: 600; font-size: 0.82rem; color: var(--charcoal); }
+        label { display: block; margin-bottom: 0.3rem; font-weight: 600; font-size: 0.95rem; color: var(--charcoal); }
 
         input, textarea {
             width: 100%;
-            padding: 0.45rem 0.6rem;
+            padding: 0.55rem 0.7rem;
             border: 2px solid rgba(42,42,42,0.2);
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 1rem;
             font-family: 'Aptos', sans-serif;
             background: rgba(255,255,255,0.95);
         }
@@ -80,10 +82,10 @@
             width: 100%;
             background: var(--charcoal);
             color: white;
-            padding: 0.55rem 2rem;
+            padding: 0.65rem 2rem;
             border: none;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -100,9 +102,9 @@
         }
 
         .quicklink {
-            background: var(--brand-green);
+            background: var(--brand-green-light);
             border-radius: 12px;
-            padding: 0.7rem 0.5rem;
+            padding: 0.9rem 0.6rem;
             box-shadow: 0 5px 16px rgba(0,0,0,0.08);
             text-align: center;
             transition: transform 0.3s ease;
@@ -110,40 +112,40 @@
 
         .quicklink:hover { transform: translateY(-3px); }
 
-        .quicklink a { text-decoration: none; color: var(--charcoal); display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
-        .quicklink svg { width: 22px; height: 22px; }
-        .quicklink span { font-size: 0.72rem; font-weight: 600; word-break: break-word; line-height: 1.2; }
+        .quicklink a { text-decoration: none; color: var(--charcoal); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+        .quicklink svg { width: 26px; height: 26px; }
+        .quicklink span { font-size: 0.85rem; font-weight: 600; word-break: break-word; line-height: 1.25; }
 
-        .office-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+        .office-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
 
         .office-card {
-            background: var(--brand-green);
+            background: var(--brand-green-light);
             border-radius: 16px;
-            padding: 1rem 1.3rem;
+            padding: 1.3rem 1.6rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
-        .office-card h2 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--charcoal); }
+        .office-card h2 { font-size: 1.25rem; margin-bottom: 0.65rem; color: var(--charcoal); }
 
-        .location-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; }
-        .location-icon { width: 32px; height: 32px; flex-shrink: 0; }
-        .location-name { font-size: 0.95rem; font-weight: 600; }
-        .location-sub { font-size: 0.78rem; opacity: 0.75; }
+        .location-row { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.65rem; }
+        .location-icon { width: 36px; height: 36px; flex-shrink: 0; }
+        .location-name { font-size: 1.1rem; font-weight: 600; }
+        .location-sub { font-size: 0.9rem; opacity: 0.75; }
 
         .map-button {
             display: inline-block;
-            padding: 0.4rem 1.1rem;
+            padding: 0.5rem 1.3rem;
             background: var(--brand-blue);
             color: var(--charcoal);
             text-decoration: none;
             border-radius: 25px;
-            font-size: 0.78rem;
+            font-size: 0.9rem;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         .map-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        .hours-text { font-size: 0.85rem; line-height: 1.7; }
+        .hours-text { font-size: 1rem; line-height: 1.8; }
 
         /* Mobile Menu */
         .mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--brand-blue); cursor: pointer; padding: 0.5rem; }
@@ -174,7 +176,7 @@
             left: 20px;
             width: 280px;
             max-width: calc(100vw - 40px);
-            background: var(--brand-green);
+            background: var(--brand-green-light);
             border-radius: 16px;
             padding: 1.4rem 1.4rem 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
@@ -197,6 +199,13 @@
 
         .reviews-close:hover { opacity: 0.85; }
 
+        .reviews-widget .review-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .reviews-mark {
             font-size: 2.2rem;
             color: rgba(42, 42, 42, 0.35);
@@ -213,7 +222,7 @@
         }
 
         .review-text {
-            font-size: 0.88rem;
+            font-size: 1.02rem;
             font-style: italic;
             color: var(--charcoal);
             line-height: 1.45;
@@ -225,7 +234,7 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.78rem;
+            font-size: 0.88rem;
         }
 
         .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
@@ -421,10 +430,7 @@
                 <div class="office-card">
                     <h2>Office Hours</h2>
                     <p class="hours-text">
-                        <strong>Monday:</strong> 13:00 - 19:00<br>
-                        <strong>Tuesday - Thursday:</strong> 08:00 - 19:00<br>
-                        <strong>Friday:</strong> 08:00 - 13:00<br>
-                        <strong>Saturday:</strong> 09:00 - 12:00
+                        <strong>Monday - Friday:</strong> 08:00 - 17:00 EAT (GMT+3)
                     </p>
                 </div>
             </div>
@@ -466,7 +472,10 @@
                 clearInterval(timer);
             };
 
-            if (slides.length) restartAuto();
+            if (slides.length) {
+                show(Math.floor(Math.random() * slides.length));
+                restartAuto();
+            }
         })();
     </script>
 

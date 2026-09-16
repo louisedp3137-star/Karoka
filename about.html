@@ -9,15 +9,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-192.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-blue: #7DA4ED;
             --brand-green: #35AF78;
+            --brand-green-light: #A4DBC2;
             --white: #ffffff;
             --charcoal: #2a2a2a;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
+        html { font-size: 118%; }
         body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.5; background: var(--brand-blue); }
         h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
         nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 0.6rem 5%; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
@@ -38,20 +40,20 @@
         .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
         .main-content { margin-top: 64px; padding: 1.3rem 5%; }
         .container { max-width: 1300px; margin: 0 auto; }
-        .page-title { font-size: 1.7rem; color: var(--charcoal); margin-bottom: 0.9rem; text-align: center; }
+        .page-title { font-size: 2.3rem; font-weight: 800; color: var(--charcoal); margin-bottom: 1rem; text-align: center; }
         footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
         .footer-text { opacity: 0.75; font-size: 0.78rem; }
 
         .about-card {
-            background: var(--brand-green);
+            background: var(--brand-green-light);
             border-radius: 20px;
-            padding: 1.6rem 2.2rem;
+            padding: 2rem 2.6rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             display: flex;
             align-items: center;
-            gap: 2.2rem;
+            gap: 2.4rem;
             max-width: 1200px;
-            margin: 160px auto 0;
+            margin: 235px auto 0;
         }
 
         @media (max-width: 700px) {
@@ -59,8 +61,8 @@
         }
 
         .about-photo {
-            width: 190px;
-            height: 190px;
+            width: 210px;
+            height: 210px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -69,17 +71,17 @@
         }
 
         .about-text p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            line-height: 1.55;
+            margin-bottom: 0.85rem;
             color: var(--charcoal);
         }
 
         .about-text .cv-note {
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: 0.98rem;
             opacity: 0.85;
-            margin-bottom: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .linkedin-btn {
@@ -88,11 +90,11 @@
             gap: 0.6rem;
             background: #0077B5;
             color: white;
-            padding: 0.6rem 1.4rem;
+            padding: 0.7rem 1.6rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.02rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 119, 181, 0.35);
         }
@@ -152,7 +154,7 @@
             left: 20px;
             width: 280px;
             max-width: calc(100vw - 40px);
-            background: var(--brand-green);
+            background: var(--brand-green-light);
             border-radius: 16px;
             padding: 1.4rem 1.4rem 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
@@ -175,6 +177,13 @@
 
         .reviews-close:hover { opacity: 0.85; }
 
+        .reviews-widget .review-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .reviews-mark {
             font-size: 2.2rem;
             color: rgba(42, 42, 42, 0.35);
@@ -191,7 +200,7 @@
         }
 
         .review-text {
-            font-size: 0.88rem;
+            font-size: 1.02rem;
             font-style: italic;
             color: var(--charcoal);
             line-height: 1.45;
@@ -203,7 +212,7 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.78rem;
+            font-size: 0.88rem;
         }
 
         .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
@@ -380,7 +389,10 @@
                 clearInterval(timer);
             };
 
-            if (slides.length) restartAuto();
+            if (slides.length) {
+                show(Math.floor(Math.random() * slides.length));
+                restartAuto();
+            }
         })();
     </script>
 

@@ -11,16 +11,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-blue: #7DA4ED;
             --brand-green: #35AF78;
+            --brand-green-light: #A4DBC2;
             --white: #ffffff;
             --charcoal: #2a2a2a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
+        html { font-size: 118%; }
 
         body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.45; background: var(--brand-blue); }
         h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
@@ -55,13 +57,13 @@
         .main-content { margin-top: 64px; padding: 1.1rem 5%; }
         .container { max-width: 1350px; margin: 0 auto; }
 
-        .page-title { font-size: 1.6rem; color: var(--charcoal); margin-bottom: 0.7rem; text-align: center; }
+        .page-title { font-size: 2.3rem; font-weight: 800; color: var(--charcoal); margin-bottom: 0.9rem; text-align: center; }
 
         .services-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.2rem;
-            margin-top: 170px;
+            margin-top: 235px;
         }
 
         @media (max-width: 700px) {
@@ -69,41 +71,42 @@
         }
 
         .service-block {
-            background: var(--brand-green);
-            padding: 1rem 1.3rem;
+            background: var(--brand-green-light);
+            padding: 1.3rem 1.6rem;
             border-radius: 16px;
             color: var(--charcoal);
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
         .service-title {
-            font-size: 1.15rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.55rem;
             color: var(--charcoal);
         }
 
         .service-intro {
-            font-size: 0.82rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.35;
+            font-size: 1rem;
+            margin-bottom: 0.65rem;
+            line-height: 1.4;
         }
 
         .service-include {
-            font-size: 0.82rem;
-            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
         }
 
         .service-list {
             list-style: none;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.65rem;
         }
 
         .service-list li {
-            padding: 0.18rem 0;
-            padding-left: 1.3rem;
+            padding: 0.25rem 0;
+            padding-left: 1.5rem;
             position: relative;
-            font-size: 0.78rem;
-            line-height: 1.3;
+            font-size: 0.95rem;
+            line-height: 1.35;
         }
 
         .service-list li::before {
@@ -112,12 +115,12 @@
             left: 0;
             color: var(--brand-blue);
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
         }
 
         .service-footnote {
             font-style: italic;
-            font-size: 0.78rem;
+            font-size: 0.92rem;
             opacity: 0.85;
         }
 
@@ -133,30 +136,30 @@
         }
 
         .discount-banner h2 {
-            font-size: 1.15rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .discount-banner > p {
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
         }
 
         .discount-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-            max-width: 500px;
-            margin: 0.4rem auto 0;
+            max-width: 560px;
+            margin: 0.5rem auto 0;
         }
 
         .discount-stats .stat-value {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
         .discount-stats .stat-label {
-            font-size: 0.82rem;
+            font-size: 0.95rem;
         }
 
         footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
@@ -217,7 +220,7 @@
             left: 20px;
             width: 280px;
             max-width: calc(100vw - 40px);
-            background: var(--brand-green);
+            background: var(--brand-green-light);
             border-radius: 16px;
             padding: 1.4rem 1.4rem 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
@@ -240,6 +243,13 @@
 
         .reviews-close:hover { opacity: 0.85; }
 
+        .reviews-widget .review-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .reviews-mark {
             font-size: 2.2rem;
             color: rgba(42, 42, 42, 0.35);
@@ -256,7 +266,7 @@
         }
 
         .review-text {
-            font-size: 0.88rem;
+            font-size: 1.02rem;
             font-style: italic;
             color: var(--charcoal);
             line-height: 1.45;
@@ -268,7 +278,7 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.78rem;
+            font-size: 0.88rem;
         }
 
         .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
@@ -476,7 +486,10 @@
                 clearInterval(timer);
             };
 
-            if (slides.length) restartAuto();
+            if (slides.length) {
+                show(Math.floor(Math.random() * slides.length));
+                restartAuto();
+            }
         })();
     </script>
 
