@@ -48,24 +48,24 @@
         .logo-container { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
 
         .policy-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 1.2rem;
-            align-items: start;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .policy-nav-list {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 235px;
+            margin-top: 150px;
         }
 
         .policy-nav-item {
             background: var(--brand-green-light);
             border: 2px solid transparent;
             border-radius: 10px;
-            padding: 0.65rem 0.9rem;
+            padding: 0.6rem 0.9rem;
             font-size: 0.92rem;
             font-weight: 600;
             color: var(--charcoal);
@@ -73,7 +73,9 @@
             text-align: left;
             transition: all 0.2s ease;
             font-family: 'Aptos', sans-serif;
-            width: 100%;
+            width: auto;
+            flex: 1 1 200px;
+            max-width: 280px;
         }
 
         .policy-nav-item:hover { transform: translateX(3px); }
@@ -105,9 +107,12 @@
         .policy-content ul ul { margin-top: 0.5rem; }
 
         @media (max-width: 900px) {
-            .policy-layout { grid-template-columns: 1fr; }
-            .policy-nav-list { flex-direction: row; flex-wrap: wrap; margin-top: 0; }
-            .policy-nav-item { width: auto; }
+            .policy-nav-list { margin-top: 20px; }
+            .policy-nav-item { flex: 1 1 140px; max-width: none; }
+        }
+
+        @media (max-width: 700px) {
+            .page-title { margin-top: 235px; }
         }
 
         @media (max-width: 768px) { .nav-links { display: none; } .page-title { font-size: 1.2rem; } }
@@ -130,7 +135,7 @@
             max-width: calc(100vw - 40px);
             background: var(--brand-green-light);
             border-radius: 16px;
-            padding: 1.4rem 1.4rem 1rem;
+            padding: 1.05rem 1.2rem 0.8rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
             z-index: 500;
         }
@@ -153,16 +158,16 @@
 
         .reviews-widget .review-text {
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
         .reviews-mark {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: rgba(42, 42, 42, 0.35);
             line-height: 1;
-            margin-bottom: -0.2rem;
+            margin-bottom: -0.15rem;
         }
 
         .review-slide { display: none; animation: reviewFade 0.6s ease; }
@@ -177,8 +182,8 @@
             font-size: 1.02rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.45;
-            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            margin-bottom: 0.35rem;
         }
 
         .review-author {
@@ -189,7 +194,7 @@
             font-size: 0.88rem;
         }
 
-        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
+        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
 
         .review-dot {
             width: 7px;

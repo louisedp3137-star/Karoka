@@ -49,26 +49,30 @@
 
         .form-card {
             background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
-            padding: 1.3rem 1.8rem;
+            padding: 0.75rem 1.4rem;
             border-radius: 16px;
             color: var(--charcoal);
-            margin-bottom: 1.1rem;
-            margin-top: 235px;
+            margin-bottom: 0.6rem;
+            margin-top: 195px;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @media (max-width: 700px) {
-            .form-card { margin-top: 90px; }
+            .form-card { margin-top: 20px; }
+            .page-title { margin-top: 235px; }
         }
 
-        .form-card h2 { text-align: center; margin-bottom: 0.8rem; font-size: 1.4rem; color: var(--charcoal); }
+        .form-card h2 { text-align: center; margin-bottom: 0.55rem; font-size: 1.25rem; color: var(--charcoal); }
 
-        .form-card form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+        .form-card form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
 
-        label { display: block; margin-bottom: 0.3rem; font-weight: 600; font-size: 0.95rem; color: var(--charcoal); }
+        label { display: block; margin-bottom: 0.2rem; font-weight: 600; font-size: 0.95rem; color: var(--charcoal); }
 
         input, textarea {
             width: 100%;
-            padding: 0.55rem 0.7rem;
+            padding: 0.4rem 0.6rem;
             border: 2px solid rgba(42,42,42,0.2);
             border-radius: 8px;
             font-size: 1rem;
@@ -82,7 +86,7 @@
             width: 100%;
             background: var(--charcoal);
             color: white;
-            padding: 0.65rem 2rem;
+            padding: 0.5rem 2rem;
             border: none;
             border-radius: 50px;
             font-size: 1.05rem;
@@ -97,14 +101,14 @@
         .quicklinks {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 0.7rem;
-            margin-bottom: 0.9rem;
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
         }
 
         .quicklink {
             background: var(--brand-green-light);
             border-radius: 12px;
-            padding: 0.9rem 0.6rem;
+            padding: 0.65rem 0.5rem;
             box-shadow: 0 5px 16px rgba(0,0,0,0.08);
             text-align: center;
             transition: transform 0.3s ease;
@@ -121,13 +125,13 @@
         .office-card {
             background: var(--brand-green-light);
             border-radius: 16px;
-            padding: 1.3rem 1.6rem;
+            padding: 1.1rem 1.4rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
-        .office-card h2 { font-size: 1.25rem; margin-bottom: 0.65rem; color: var(--charcoal); }
+        .office-card h2 { font-size: 1.25rem; margin-bottom: 0.55rem; color: var(--charcoal); }
 
-        .location-row { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.65rem; }
+        .location-row { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.55rem; }
         .location-icon { width: 36px; height: 36px; flex-shrink: 0; }
         .location-name { font-size: 1.1rem; font-weight: 600; }
         .location-sub { font-size: 0.9rem; opacity: 0.75; }
@@ -144,6 +148,15 @@
             transition: all 0.3s ease;
         }
         .map-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        .map-embed {
+            margin-top: 0.7rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 16px rgba(0,0,0,0.1);
+            line-height: 0;
+        }
+        .map-embed iframe { width: 100%; height: 165px; display: block; border: 0; }
 
         .hours-text { font-size: 1rem; line-height: 1.8; }
 
@@ -178,7 +191,7 @@
             max-width: calc(100vw - 40px);
             background: var(--brand-green-light);
             border-radius: 16px;
-            padding: 1.4rem 1.4rem 1rem;
+            padding: 1.05rem 1.2rem 0.8rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
             z-index: 500;
         }
@@ -201,16 +214,16 @@
 
         .reviews-widget .review-text {
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
         .reviews-mark {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: rgba(42, 42, 42, 0.35);
             line-height: 1;
-            margin-bottom: -0.2rem;
+            margin-bottom: -0.15rem;
         }
 
         .review-slide { display: none; animation: reviewFade 0.6s ease; }
@@ -225,8 +238,8 @@
             font-size: 1.02rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.45;
-            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            margin-bottom: 0.35rem;
         }
 
         .review-author {
@@ -237,7 +250,7 @@
             font-size: 0.88rem;
         }
 
-        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
+        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
 
         .review-dot {
             width: 7px;
@@ -425,6 +438,9 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Ecole+Bambino+Fort+Dauphin+Toalagnaro+Madagascar" target="_blank" rel="noopener noreferrer" class="map-button">
                         📍 View on Google Maps
                     </a>
+                    <div class="map-embed">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4288.204296592821!2d46.9787738!3d-25.0312465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21d1a500ef5ac261%3A0x3797b2d1e0d7bbbb!2sKaroka%20SARL%20English%20Tutoring%20%26%20Educational%20Consultancy!5e1!3m2!1sen!2smg!4v1789544277062!5m2!1sen!2smg" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Karoka SARL office location on Google Maps"></iframe>
+                    </div>
                 </div>
 
                 <div class="office-card">
