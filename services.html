@@ -15,7 +15,10 @@
     <style>
         :root {
             --brand-blue: #7DA4ED;
+            --brand-blue-dark: #3D63B8;
+            --brand-blue-light: #C5D6F7;
             --brand-green: #35AF78;
+            --brand-green-dark: #1E7A4C;
             --brand-green-light: #A4DBC2;
             --white: #ffffff;
             --charcoal: #2a2a2a;
@@ -100,6 +103,14 @@
             align-items: start;
         }
 
+        /* Each column stacks its own two boxes independently, so the NGO
+           box sits right under the (shorter) Consultancy card instead of
+           being pulled down to match the height of the Tutoring column. */
+        .services-col {
+            display: flex;
+            flex-direction: column;
+        }
+
         .service-block {
             background: var(--brand-green-light);
             padding: 1.9rem 1.5rem 0.4rem;
@@ -108,9 +119,10 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             position: relative;
             margin-top: 16px;
+            border: 3px solid var(--brand-blue-dark);
         }
 
-        .service-block:nth-child(2) { border-radius: 30px 30px 8px 30px; }
+        .services-col:nth-child(2) .service-block { border-radius: 30px 30px 8px 30px; }
 
         .service-header {
             position: absolute;
@@ -137,7 +149,7 @@
             border: 3px solid var(--white);
         }
 
-        .service-block:nth-child(2) .service-icon { background: var(--brand-green); }
+        .services-col:nth-child(2) .service-icon { background: var(--brand-green); }
 
         .service-title-pill {
             background: var(--white);
@@ -146,6 +158,9 @@
             box-shadow: 0 6px 16px rgba(0,0,0,0.15);
             min-width: 0;
         }
+
+        .service-header .service-title-pill { border: 2px solid var(--brand-blue-dark); }
+        .discount-header .service-title-pill { border: 2px solid var(--brand-green-dark); }
 
         .service-title-pill .service-title {
             margin: 0;
@@ -206,7 +221,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.18);
         }
 
-        .service-block:nth-child(2) .service-list li::before { background: var(--brand-green); }
+        .services-col:nth-child(2) .service-list li::before { background: var(--brand-green); }
 
         .service-footnote {
             font-style: italic;
@@ -215,15 +230,15 @@
         }
 
         .discount-banner {
-            max-width: 560px;
-            margin: 1rem 0 0 auto;
+            margin-top: 40px;
             padding: 2.3rem 1.4rem 0.9rem;
-            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
+            background: linear-gradient(90deg, var(--brand-blue-light) 0%, var(--brand-green-light) 100%);
             border-radius: 8px 30px 30px 30px;
             color: var(--charcoal);
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             position: relative;
+            border: 3px solid var(--brand-green-dark);
         }
 
         .discount-header {
@@ -261,12 +276,34 @@
             font-size: 0.95rem;
         }
 
+        /* Slogan from the home page's CTA banner (.cta-tagline there),
+           reused here to fill the space left under the shorter right
+           column now that it's top-aligned again (not vertically centred
+           the way Round 13 had it). */
+        .services-slogan {
+            margin-top: 16px;
+            text-align: right;
+            font-size: 1.15rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--charcoal);
+            opacity: 0.85;
+            padding: 0 0.6rem;
+        }
+
+        @media (max-width: 900px) {
+            .services-slogan { text-align: center; }
+        }
+
         footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
         .footer-text { opacity: 0.75; font-size: 0.78rem; }
 
         @media (max-width: 900px) {
             .services-grid { grid-template-columns: 1fr; }
             .discount-stats { grid-template-columns: 1fr; }
+            /* Single column now: the two .services-col wrappers simply stack,
+               giving Tutoring, Reviews, Consultancy, NGO in that order --
+               each box still directly under the one it pairs with. */
         }
 
         @media (max-width: 768px) {
@@ -313,18 +350,24 @@
         .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
 
         /* Reviews */
+        /* The widget used to float as a fixed overlay, but once the page got
+           short enough to nearly fit one screen (Round 8) and the review text
+           stopped being truncated (also Round 8), a persistently-fixed widget
+           of variable height no longer had anywhere to sit without covering
+           either the cards above it or the footer below it. So it's now a
+           grid item stacked inside the same .services-col as the English
+           Tutoring card, so it always sits directly under it (the NGO box
+           is stacked the same way under Educational Consultancy) —
+           guaranteed never to overlap anything, regardless of review length
+           or viewport size. */
         .reviews-widget {
-            position: fixed;
-            bottom: 12px;
-            left: 20px;
-            width: 320px;
-            max-width: calc(100vw - 40px);
-            background: var(--brand-green-light);
+            position: relative;
+            margin-top: 16px;
+            background: var(--brand-blue-light);
             border-radius: 16px;
-            padding: 0.75rem 1.1rem 0.6rem;
+            padding: 0.9rem 1.2rem 0.7rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-            z-index: 500;
-            transition: opacity 0.25s ease;
+            border: 3px solid var(--brand-blue-dark);
         }
 
         .reviews-close {
@@ -390,18 +433,7 @@
         .review-dot.active { background: var(--charcoal); }
 
         @media (max-width: 700px) {
-            /* On mobile the widget drops out of fixed/floating mode entirely and
-               becomes a normal in-flow card sitting in the open space at the end
-               of the page, after the NGO box — so it never overlaps the content
-               above it while scrolling. */
-            .reviews-widget {
-                position: relative;
-                inset: auto;
-                width: 100%;
-                max-width: 420px;
-                margin: 1.4rem auto 0;
-                padding: 1rem 1.1rem 0.85rem;
-            }
+            .reviews-widget { padding: 1rem 1.1rem 0.85rem; }
             .reviews-widget .reviews-mark { font-size: 1.6rem; }
             .reviews-widget .review-text { font-size: 0.9rem; }
             .reviews-widget .review-author { font-size: 0.78rem; }
@@ -463,6 +495,7 @@
             <h1 class="page-title">SERVICES</h1>
 
             <div class="services-grid">
+              <div class="services-col">
                 <div class="service-block">
                     <div class="service-header">
                         <span class="service-icon">🎓</span>
@@ -483,6 +516,42 @@
                     <p class="service-footnote">Each programme is fully personalised following a level assessment and consultation.</p>
                 </div>
 
+                <div class="reviews-widget" id="reviewsWidget">
+                    <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
+                    <div class="reviews-mark">&ldquo;</div>
+                    <div class="reviews-slides">
+                        <blockquote class="review-slide active">
+                            <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                            <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
+                        </blockquote>
+                        <blockquote class="review-slide">
+                            <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                            <cite class="review-author">Mylene &mdash; June 2026</cite>
+                        </blockquote>
+                        <blockquote class="review-slide">
+                            <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                            <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
+                        </blockquote>
+                        <blockquote class="review-slide">
+                            <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                            <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
+                        </blockquote>
+                        <blockquote class="review-slide">
+                            <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                            <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+                        </blockquote>
+                    </div>
+                    <div class="reviews-dots">
+                        <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
+                        <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
+                        <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
+                        <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
+                        <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
+                    </div>
+                </div>
+              </div>
+
+              <div class="services-col">
                 <div class="service-block">
                     <div class="service-header">
                         <span class="service-icon">🏫</span>
@@ -500,58 +569,27 @@
 
                     <p class="service-footnote">Consultancy projects are designed around your institutional context and objectives.</p>
                 </div>
-            </div>
 
-            <div class="discount-banner">
-                <div class="discount-header">
-                    <span class="service-icon">🎁</span>
-                    <div class="service-title-pill"><h2 class="service-title">Special NGO Discounts</h2></div>
-                </div>
-                <p>Karoka offers reduced rates for <strong>both</strong> English tutoring and consultancy services:</p>
-                <div class="discount-stats">
-                    <div>
-                        <p class="stat-value">40% OFF</p>
-                        <p class="stat-label">Local NGOs</p>
+                <div class="discount-banner">
+                    <div class="discount-header">
+                        <span class="service-icon">🎁</span>
+                        <div class="service-title-pill"><h2 class="service-title">Special NGO Discounts</h2></div>
                     </div>
-                    <div>
-                        <p class="stat-value">20% OFF</p>
-                        <p class="stat-label">International NGOs</p>
+                    <p>Karoka offers reduced rates for <strong>both</strong> English tutoring and consultancy services:</p>
+                    <div class="discount-stats">
+                        <div>
+                            <p class="stat-value">40% OFF</p>
+                            <p class="stat-label">Local NGOs</p>
+                        </div>
+                        <div>
+                            <p class="stat-value">20% OFF</p>
+                            <p class="stat-label">International NGOs</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="reviews-widget" id="reviewsWidget">
-                <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
-                <div class="reviews-mark">&ldquo;</div>
-                <div class="reviews-slides">
-                    <blockquote class="review-slide active">
-                        <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
-                        <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
-                    </blockquote>
-                    <blockquote class="review-slide">
-                        <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
-                        <cite class="review-author">Mylene &mdash; June 2026</cite>
-                    </blockquote>
-                    <blockquote class="review-slide">
-                        <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
-                        <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
-                    </blockquote>
-                    <blockquote class="review-slide">
-                        <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
-                        <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
-                    </blockquote>
-                    <blockquote class="review-slide">
-                        <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
-                        <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
-                    </blockquote>
-                </div>
-                <div class="reviews-dots">
-                    <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
-                    <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
-                    <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
-                    <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
-                    <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
-                </div>
+                <p class="services-slogan">Professional. Personalised. Proven results.</p>
+              </div>
             </div>
         </div>
     </div>
@@ -595,28 +633,6 @@
                 show(Math.floor(Math.random() * slides.length));
                 restartAuto();
             }
-        })();
-
-        // Fade the floating widget out of the way whenever it would overlap the footer
-        // (it's fixed to the bottom-left of the viewport, so on a page this short it
-        // would otherwise sit on top of the footer text once scrolled all the way down).
-        (function() {
-            const widget = document.getElementById('reviewsWidget');
-            const footerEl = document.querySelector('footer');
-            if (!widget || !footerEl) return;
-
-            function handleScroll() {
-                if (widget.style.display === 'none') return;
-                const wRect = widget.getBoundingClientRect();
-                const fRect = footerEl.getBoundingClientRect();
-                const overlapsFooter = wRect.bottom > fRect.top;
-                widget.style.opacity = overlapsFooter ? '0' : '1';
-                widget.style.pointerEvents = overlapsFooter ? 'none' : 'auto';
-            }
-
-            window.addEventListener('scroll', handleScroll, { passive: true });
-            window.addEventListener('resize', handleScroll);
-            handleScroll();
         })();
     </script>
 
