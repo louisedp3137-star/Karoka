@@ -247,13 +247,22 @@
             gap: 1rem;
         }
 
+        /* Sized so the gallery's total height (3 stacked photos) matches
+           the text card's own natural height at typical desktop widths
+           (≥1440px, where .container is pinned at its 1300px max-width) --
+           at 88% the gallery ran taller than the text, and since the two
+           columns stretch to match each other (.about-layout's
+           align-items: stretch), that extra gallery height was forcing
+           empty space at the bottom of the text card. 84% brings the two
+           within a few px of each other so the text card holds just its
+           own content. */
         .gallery-item {
             background: var(--white);
             border-radius: 18px;
             border: 3px solid var(--brand-blue-dark);
             overflow: hidden;
             box-shadow: 0 8px 22px rgba(0,0,0,0.15);
-            max-width: 88%;
+            max-width: 84%;
             margin: 0 auto;
         }
 
@@ -412,8 +421,8 @@
                 <li><a href="rates.html">Rates</a></li>
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html" class="active">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
 
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
@@ -427,8 +436,8 @@
             <li><a href="rates.html">Rates</a></li>
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html" class="active">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
             <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
 
