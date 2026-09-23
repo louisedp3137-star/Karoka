@@ -15,10 +15,12 @@
     <style>
         :root {
             --brand-blue: #7DA4ED;
+            --brand-blue-dark: #3D63B8;
             --brand-green: #35AF78;
+            --brand-green-dark: #1E7A4C;
             --brand-green-light: #A4DBC2;
             --white: #ffffff;
-            --charcoal: #2a2a2a;
+            --charcoal: #0E4287;
         }
 
         * {
@@ -37,7 +39,15 @@
             font-family: 'Aptos', sans-serif;
             color: var(--charcoal);
             line-height: 1.5;
-            background: var(--brand-blue);
+            background-image:
+                url('images/karoka-logo-tile.png'),
+                url('images/karoka-logo-tile.png'),
+                linear-gradient(180deg, #3D63B8 0%, #1E7A4C 100%);
+            background-repeat: repeat, repeat, no-repeat;
+            background-size: 120px 120px, 120px 120px, cover;
+            background-position: 0 0, 60px 60px, center;
+            background-attachment: scroll, scroll, scroll;
+            padding-bottom: 200px;
         }
 
         h1, h2, h3 {
@@ -106,27 +116,57 @@
         }
 
         .hero-logo {
-            width: 360px;
+            width: 300px;
             flex-shrink: 0;
         }
 
         .hero-text {
-            text-align: left;
+            text-align: center;
         }
 
         .hero-title {
-            font-size: 2.1rem;
+            display: inline-block;
+            background: var(--white);
+            padding: 1rem 2.6rem;
+            border-radius: 26px;
+            border: 3px solid var(--brand-green-dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            font-size: 2.5rem;
             font-weight: 800;
             color: var(--charcoal);
-            margin-bottom: 0.4rem;
-            line-height: 1.2;
+            line-height: 1.3;
+            margin: 0;
         }
 
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--charcoal);
-            opacity: 0.8;
-            margin-bottom: 0;
+        /* Lesson photo strips, interspersed between the rows of feature cards */
+        .lesson-tiles {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0.9rem auto;
+        }
+
+        .lesson-tiles img {
+            flex: 1 1 0;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid var(--white);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 700px) {
+            .lesson-tiles {
+                flex-wrap: wrap;
+            }
+            .lesson-tiles img {
+                flex: 1 1 45%;
+                max-width: 45%;
+            }
         }
 
         /* Features Section - Compact Cards */
@@ -140,20 +180,28 @@
             margin: 0 auto;
         }
 
+        /* 5 cards: 3 across the first row, then 2 centered on the row
+           beneath, on any container wide enough for 3 per row. */
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 0.8rem;
         }
 
         .feature-card {
             background: var(--brand-green-light);
-            padding: 0.9rem 0.7rem;
+            padding: 1.5rem 0.9rem 0.9rem;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border-left: 4px solid var(--brand-blue);
             transition: all 0.3s ease;
             text-align: center;
+            flex: 0 1 calc(33.333% - 0.55rem);
+            max-width: calc(33.333% - 0.55rem);
+            min-width: 220px;
+            position: relative;
+            margin-top: 24px;
         }
 
         .feature-card:hover {
@@ -161,16 +209,58 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.14);
         }
 
+        /* Floating icon + white title pill, overlapping the card's top
+           edge -- the same treatment as .service-header on the Services
+           page, scaled down to fit these smaller cards. */
+        .feature-card-header {
+            position: absolute;
+            top: -20px;
+            left: 0.6rem;
+            right: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
         .feature-icon {
-            font-size: 1.7rem;
-            margin-bottom: 0.35rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            background: var(--brand-blue);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            border: 3px solid var(--white);
+        }
+
+        .feature-card:nth-child(even) .feature-icon {
+            background: var(--brand-green);
+        }
+
+        .feature-title-pill {
+            background: var(--white);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            border: 2px solid var(--brand-blue-dark);
+            min-width: 0;
+        }
+
+        .feature-card:nth-child(even) .feature-title-pill {
+            border-color: var(--brand-green-dark);
         }
 
         .feature-title {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: var(--charcoal);
-            margin-bottom: 0.35rem;
             font-weight: 700;
+            text-align: left;
+            margin: 0;
+            line-height: 1.2;
         }
 
         .feature-text {
@@ -187,43 +277,65 @@
             text-align: center;
         }
 
+        /* display: table (not inline-block) so the tagline always sits on
+           its own line -- otherwise, at wide viewports, the button below
+           can end up sharing the same line instead of "alone underneath"
+           it. Same white-box treatment as .services-slogan/.rates-slogan. */
         .cta-tagline {
+            display: table;
+            margin: 0 auto 0.5rem;
+            background: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 2px solid var(--brand-blue-dark);
             font-size: 1.5rem;
             color: var(--charcoal);
             font-style: italic;
-            margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
+        /* Restyled from a rounded "button" pill into the same white
+           text-box look as the tagline above it -- forced onto its own
+           centred line the same way. */
         .cta-button {
-            display: inline-block;
-            padding: 0.75rem 2.2rem;
-            background: var(--brand-green);
+            display: table;
+            margin: 0.5rem auto 0;
+            padding: 0.7rem 1.8rem;
+            background: var(--white);
             color: var(--charcoal);
+            border: 2px solid var(--brand-blue-dark);
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 20px;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-            margin-top: 0.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 26px rgba(0,0,0,0.24);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.2);
+        }
+
+        .bottom-bar-stack {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
         }
 
         footer {
-            background: var(--charcoal);
+            background: var(--brand-blue-dark);
             color: var(--white);
             text-align: center;
-            padding: 0.7rem 5%;
+            padding: 0.4rem 5%;
         }
 
         .footer-text {
-            opacity: 0.75;
-            font-size: 0.78rem;
+            opacity: 0.85;
+            font-size: 0.7rem;
         }
 
         /* Mobile Menu */
@@ -267,6 +379,7 @@
             text-decoration: none;
             color: var(--charcoal);
             font-weight: 500;
+            text-align: center;
             transition: background 0.3s;
         }
 
@@ -276,10 +389,16 @@
             color: var(--brand-blue);
         }
 
-        @media (max-width: 1200px) {
-            .features-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        /* The nav links need more room than the 768px breakpoint below
+           allows for -- between roughly 769px and 1020px they wrap onto a
+           second line and overlap the content underneath the fixed nav.
+           Switching to the hamburger menu this much earlier keeps the nav
+           single-line (and thus its fixed height correct) at every tablet
+           and small-laptop width, not just phone widths. Placed after the
+           display:none default above, so it isn't overridden by it. */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; }
         }
 
         @media (max-width: 768px) {
@@ -301,55 +420,40 @@
 
             .hero-title {
                 font-size: 1.4rem;
+                padding: 0.7rem 1.4rem;
+                border-radius: 18px;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
+            .feature-card {
+                flex-basis: 100%;
+                max-width: 100%;
             }
         }
 
-        /* Reviews */
-        .reviews-widget {
-            position: fixed;
-            top: 80px;
-            left: 20px;
-            width: 300px;
-            max-width: calc(100vw - 40px);
+        /* Reviews bar (sits above the footer bar, both stacked inside .bottom-bar-stack) */
+        .reviews-bar {
             background: var(--brand-green-light);
-            border-radius: 16px;
-            padding: 1.2rem 1.3rem 0.9rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-            z-index: 500;
+            border-top: 3px solid var(--brand-blue-dark);
+            box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+            padding: 0.7rem 3.2rem 0.7rem 1.4rem;
         }
 
-        .reviews-banner-card {
-            position: relative;
-            max-width: 520px;
-            margin: 0 auto 0.8rem;
-            background: var(--brand-green-light);
-            border-radius: 18px;
-            padding: 0.8rem 1.8rem 0.7rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .reviews-banner-card .review-text {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .reviews-banner-card .reviews-mark {
-            font-size: 1.6rem;
-            margin-bottom: -0.3rem;
+        .reviews-bar-inner {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .reviews-close {
             position: absolute;
-            top: 0.5rem;
-            right: 0.8rem;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             line-height: 1;
             color: var(--charcoal);
             opacity: 0.45;
@@ -362,19 +466,25 @@
         }
 
         .reviews-mark {
-            font-size: 1.9rem;
-            color: rgba(42, 42, 42, 0.35);
+            font-size: 1.6rem;
+            color: rgba(14, 66, 135, 0.35);
             line-height: 1;
-            margin-bottom: -0.15rem;
+            flex-shrink: 0;
+        }
+
+        .reviews-slides {
+            flex: 1 1 auto;
+            min-width: 0;
+            text-align: center;
         }
 
         .review-slide {
             display: none;
-            animation: reviewFade 0.6s ease;
         }
 
         .review-slide.active {
             display: block;
+            animation: reviewFade 0.6s ease;
         }
 
         @keyframes reviewFade {
@@ -383,11 +493,12 @@
         }
 
         .review-text {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.5;
-            margin-bottom: 0.6rem;
+            line-height: 1.35;
+            margin-bottom: 0.25rem;
+            text-align: center;
         }
 
         .review-author {
@@ -395,13 +506,16 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+            text-align: center;
         }
 
         .reviews-dots {
             display: flex;
             gap: 0.4rem;
-            margin-top: 0.5rem;
+            flex-shrink: 0;
+            align-self: center;
+            margin-left: 0.6rem;
             justify-content: center;
         }
 
@@ -411,7 +525,7 @@
             padding: 0;
             border: none;
             border-radius: 50%;
-            background: rgba(42, 42, 42, 0.3);
+            background: rgba(14, 66, 135, 0.3);
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -421,34 +535,13 @@
         }
 
         @media (max-width: 700px) {
-            .reviews-widget {
-                width: 190px;
-                top: 70px;
-                left: 10px;
-                padding: 1rem 1rem 0.8rem;
-            }
-
-            .reviews-widget .reviews-mark {
-                font-size: 1.8rem;
-            }
-
-            .reviews-widget .review-text {
-                font-size: 0.8rem;
-                -webkit-line-clamp: 4;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .reviews-widget .review-author {
-                font-size: 0.72rem;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .reviews-widget {
-                width: 160px;
-            }
+            .reviews-bar { padding: 0.6rem 2.6rem 0.6rem 1rem; }
+            .reviews-mark { font-size: 1.3rem; }
+            .reviews-bar-inner { flex-wrap: wrap; }
+            .review-text { font-size: 0.85rem; }
+            .review-author { font-size: 0.72rem; }
+            .reviews-dots { margin-left: 0; }
+            body { padding-bottom: 370px; }
         }
     </style>
 </head>
@@ -462,6 +555,7 @@
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
             </ul>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
         </div>
@@ -475,99 +569,126 @@
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
         </ul>
     </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <img src="images/karoka-hero-logo.png" alt="Karoka Full Logo" class="hero-logo">
-            <div class="hero-text">
-                <h1 class="hero-title">English Tutoring & Educational Consultancy</h1>
-                <p class="hero-subtitle">Fort Dauphin (Toalagnaro), Madagascar</p>
+    <div class="page-center">
+            <section class="hero">
+                <div class="hero-content">
+                    <img src="images/karoka-hero-logo.png" alt="Karoka Full Logo" class="hero-logo">
+                    <div class="hero-text">
+                        <h1 class="hero-title">English Tutoring<br>and<br>Educational Consultancy Services</h1>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="features-container">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">🎓</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Experienced & Qualified</h3></div>
+                            </div>
+                            <p class="feature-text">30 years teaching across three countries and educational systems</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">✨</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Personalised Programmes</h3></div>
+                            </div>
+                            <p class="feature-text">Tailored to your level, goals, and availability</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">🌍</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Local & International</h3></div>
+                            </div>
+                            <p class="feature-text">Based in Fort Dauphin, online services across Madagascar and internationally</p>
+                        </div>
+                    </div>
+
+                    <div class="lesson-tiles">
+                        <img src="images/photo-group-lesson.jpg" alt="Group English lesson" width="1000" height="750">
+                        <img src="images/photo-cafe-lesson.jpg" alt="Lesson at a local cafe" width="1000" height="750">
+                        <img src="images/photo-rmi-training.jpg" alt="RMI training session" width="1000" height="750">
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">🛡️</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Professional Standards</h3></div>
+                            </div>
+                            <p class="feature-text">UK and Madagascar police checks, safeguarding training, confidentiality</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">📅</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Flexible Options</h3></div>
+                            </div>
+                            <p class="feature-text">Weekdays and Saturdays, at office, online, or your location</p>
+                        </div>
+                    </div>
+
+                    <div class="lesson-tiles">
+                        <img src="images/photo-online-lesson.jpg" alt="Online English lesson" width="1000" height="528">
+                        <img src="images/photo-team-planning.jpg" alt="Planning session with the Karoka team" width="1000" height="750">
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <p class="cta-tagline">Professional. Personalised. Proven results.</p>
+                <a href="contact.html" class="cta-button">Get Started Today</a>
+            </section>
+    </div>
+
+    <div class="bottom-bar-stack">
+        <div class="reviews-bar" id="reviewsWidget">
+            <div class="reviews-bar-inner">
+                <span class="reviews-mark">&ldquo;</span>
+                <div class="reviews-slides">
+                    <blockquote class="review-slide active">
+                        <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                        <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                        <cite class="review-author">Mylene &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                        <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                        <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                        <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+                    </blockquote>
+                </div>
+                <div class="reviews-dots">
+                    <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
+                    <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
+                    <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
+                    <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
+                    <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="features-container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎓</div>
-                    <h3 class="feature-title">Experienced & Qualified</h3>
-                    <p class="feature-text">30 years teaching across three countries and educational systems</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3 class="feature-title">Personalised Programmes</h3>
-                    <p class="feature-text">Tailored to your level, goals, and availability</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3 class="feature-title">Local & International</h3>
-                    <p class="feature-text">Based in Fort Dauphin, online services across Madagascar and internationally</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3 class="feature-title">Professional Standards</h3>
-                    <p class="feature-text">UK and Madagascar police checks, safeguarding training, confidentiality</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3 class="feature-title">Flexible Options</h3>
-                    <p class="feature-text">Weekdays and Saturdays, at office, online, or your location</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <p class="cta-tagline">Professional. Personalised. Proven results.</p>
-
-        <div class="reviews-banner-card" id="reviewsWidget">
             <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
-            <div class="reviews-mark">&ldquo;</div>
-            <div class="reviews-slides">
-                <blockquote class="review-slide active">
-                    <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
-                    <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
-                    <cite class="review-author">Mylene &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
-                    <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
-                    <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
-                </blockquote>
-                <blockquote class="review-slide">
-                    <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
-                    <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
-                </blockquote>
-            </div>
-            <div class="reviews-dots">
-                <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
-                <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
-                <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
-                <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
-                <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
-            </div>
         </div>
-
-        <a href="contact.html" class="cta-button">Get Started Today</a>
-    </section>
-
-    <footer>
-        <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
-        <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
-    </footer>
+        <footer>
+            <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
+            <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
+        </footer>
+    </div>
     <script>
         // Reviews carousel
         (function() {

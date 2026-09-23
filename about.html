@@ -13,14 +13,29 @@
     <style>
         :root {
             --brand-blue: #7DA4ED;
+            --brand-blue-dark: #3D63B8;
             --brand-green: #35AF78;
+            --brand-green-dark: #1E7A4C;
             --brand-green-light: #A4DBC2;
             --white: #ffffff;
-            --charcoal: #2a2a2a;
+            --charcoal: #0E4287;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
         html { font-size: 118%; }
-        body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.5; background: var(--brand-blue); }
+        body {
+            font-family: 'Aptos', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.5;
+            background-image:
+                url('images/karoka-logo-tile.png'),
+                url('images/karoka-logo-tile.png'),
+                linear-gradient(180deg, #3D63B8 0%, #1E7A4C 100%);
+            background-repeat: repeat, repeat, no-repeat;
+            background-size: 120px 120px, 120px 120px, cover;
+            background-position: 0 0, 60px 60px, center;
+            background-attachment: scroll, scroll, scroll;
+            padding-bottom: 200px;
+        }
         h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
         nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 0.6rem 5%; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
@@ -38,37 +53,70 @@
             display: inline-block;
         }
         .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
-        .main-content { margin-top: 64px; padding: 1.3rem 5%; }
+
+        .main-content { margin-top: 64px; padding: 1rem 5%; }
         .container { max-width: 1300px; margin: 0 auto; }
-        .page-title { font-size: 2.3rem; font-weight: 800; color: var(--charcoal); margin-bottom: 1rem; text-align: center; }
-        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
-        .footer-text { opacity: 0.75; font-size: 0.78rem; }
+        .page-title {
+            display: table;
+            margin: 0 auto 0.9rem;
+            background: var(--white);
+            padding: 0.6rem 2.6rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            text-align: center;
+        }
+        .bottom-bar-stack {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+        }
+        footer {
+            background: var(--brand-blue-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 0.4rem 5%;
+        }
+        .footer-text { opacity: 0.85; font-size: 0.7rem; }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 1.5rem;
+            align-items: stretch;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .about-layout { grid-template-columns: 1fr; }
+        }
 
         .about-card {
             background: var(--brand-green-light);
-            border-radius: 20px;
-            padding: 2rem 2.6rem;
+            border-radius: 30px;
+            border: 3px solid var(--brand-blue-dark);
+            padding: 1.8rem 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            display: flex;
-            align-items: center;
-            gap: 2.4rem;
-            max-width: 1200px;
-            margin: 188px auto 0;
         }
 
-        @media (max-width: 700px) {
-            .about-card { margin-top: 20px; }
-            .page-title { margin-top: 235px; }
+        .about-text {
+            text-align: left;
         }
 
         .about-photo {
-            width: 210px;
-            height: 210px;
+            width: 175px;
+            height: 175px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border: 5px solid var(--brand-blue);
-            flex-shrink: 0;
+            float: left;
+            shape-outside: circle(50%);
+            margin: 0 1.4rem 0.8rem 0;
         }
 
         .about-text p {
@@ -83,6 +131,43 @@
             font-size: 0.98rem;
             opacity: 0.85;
             margin-bottom: 1rem;
+            text-align: center;
+            clear: both;
+        }
+
+        .about-linkedin-wrap {
+            text-align: center;
+        }
+
+        .qualifications-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            clear: both;
+        }
+
+        .qualifications-list {
+            list-style: disc;
+            text-align: left;
+            margin: 0 0 1rem 1.3rem;
+            font-size: 1rem;
+            line-height: 1.55;
+            color: var(--charcoal);
+        }
+
+        .qualifications-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        .qualifications-list li ul {
+            list-style: circle;
+            margin: 0.3rem 0 0.3rem 1.3rem;
+            font-size: 0.95rem;
+        }
+
+        .qualifications-list li ul li {
+            margin-bottom: 0.2rem;
         }
 
         .linkedin-btn {
@@ -136,46 +221,45 @@
             text-decoration: none;
             color: var(--charcoal);
             font-weight: 500;
+            text-align: center;
             transition: background 0.3s;
         }
         .mobile-menu ul li a:hover,
         .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
 
-        @media (max-width: 768px) {
+        /* The nav links need more room than the 768px breakpoint below allows
+           for -- between roughly 769px and 1020px they wrap onto a second
+           line and overlap the content underneath the fixed nav. Switching
+           to the hamburger menu this much earlier keeps the nav single-line
+           at every tablet and small-laptop width, not just phone widths. */
+        @media (max-width: 1024px) {
             .nav-links { display: none; }
             .mobile-menu-toggle { display: block; }
-            .page-title { font-size: 1.6rem; }
-            .about-card { flex-direction: column; text-align: center; }
         }
 
-        .gallery-section { margin: 1.3rem auto 0; max-width: 1200px; }
-
-        .gallery-title {
-            font-size: 1.35rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 0.8rem;
-            color: var(--charcoal);
+        @media (max-width: 768px) {
+            .page-title { font-size: 1.5rem; padding: 0.5rem 1.6rem; }
         }
 
         .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
         }
 
         .gallery-item {
             background: var(--white);
-            border-radius: 14px;
+            border-radius: 18px;
+            border: 3px solid var(--brand-blue-dark);
             overflow: hidden;
             box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+            max-width: 88%;
+            margin: 0 auto;
         }
 
         .gallery-item img {
             width: 100%;
-            height: 165px;
-            object-fit: cover;
-            object-position: center top;
+            height: auto;
             display: block;
         }
 
@@ -188,37 +272,63 @@
             line-height: 1.3;
         }
 
-        @media (max-width: 700px) {
-            .photo-gallery { grid-template-columns: 1fr 1fr; }
-            .gallery-item img { height: 130px; }
+        /* Full-width gradient banner, matching the home page's .cta-section
+           exactly -- a sibling of .container, broken out of .main-content's
+           own side padding via the 100vw/-50vw trick so its background
+           reaches the true edges of the viewport like the home page's does. */
+        .cta-section {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: 24px;
+            padding: 0.9rem 5%;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
+            text-align: center;
         }
 
-        @media (max-width: 480px) {
-            .photo-gallery { grid-template-columns: 1fr; }
-            .gallery-item img { height: 190px; }
+        /* Same white boxed-pill slogan as the home/services/rates pages. */
+        .about-slogan {
+            display: table;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 2px solid var(--brand-blue-dark);
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--charcoal);
         }
 
-        /* Reviews */
-        .reviews-widget {
-            position: fixed;
-            top: 78px;
-            left: 20px;
-            width: 280px;
-            max-width: calc(100vw - 40px);
+        /* Reviews bar (sits above the footer bar, both stacked inside .bottom-bar-stack) */
+        .reviews-bar {
             background: var(--brand-green-light);
-            border-radius: 16px;
-            padding: 1.05rem 1.2rem 0.8rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-            z-index: 500;
+            border-top: 3px solid var(--brand-blue-dark);
+            box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+            padding: 0.7rem 3.2rem 0.7rem 1.4rem;
+        }
+
+        .reviews-bar-inner {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .reviews-close {
             position: absolute;
-            top: 0.6rem;
-            right: 0.9rem;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             line-height: 1;
             color: var(--charcoal);
             opacity: 0.45;
@@ -228,22 +338,17 @@
 
         .reviews-close:hover { opacity: 0.85; }
 
-        .reviews-widget .review-text {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
         .reviews-mark {
-            font-size: 1.8rem;
-            color: rgba(42, 42, 42, 0.35);
+            font-size: 1.6rem;
+            color: rgba(14, 66, 135, 0.35);
             line-height: 1;
-            margin-bottom: -0.15rem;
+            flex-shrink: 0;
         }
 
-        .review-slide { display: none; animation: reviewFade 0.6s ease; }
-        .review-slide.active { display: block; }
+        .reviews-slides { flex: 1 1 auto; min-width: 0; text-align: center; }
+
+        .review-slide { display: none; }
+        .review-slide.active { display: block; animation: reviewFade 0.6s ease; }
 
         @keyframes reviewFade {
             from { opacity: 0; }
@@ -251,11 +356,12 @@
         }
 
         .review-text {
-            font-size: 1.02rem;
+            font-size: 0.95rem;
             font-style: italic;
             color: var(--charcoal);
-            line-height: 1.4;
-            margin-bottom: 0.35rem;
+            line-height: 1.35;
+            margin-bottom: 0.25rem;
+            text-align: center;
         }
 
         .review-author {
@@ -263,10 +369,11 @@
             font-style: normal;
             font-weight: 700;
             color: var(--charcoal);
-            font-size: 0.88rem;
+            font-size: 0.82rem;
+            text-align: center;
         }
 
-        .reviews-dots { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+        .reviews-dots { display: flex; gap: 0.4rem; flex-shrink: 0; align-self: center; margin-left: 0.6rem; justify-content: center; }
 
         .review-dot {
             width: 7px;
@@ -274,7 +381,7 @@
             padding: 0;
             border: none;
             border-radius: 50%;
-            background: rgba(42, 42, 42, 0.25);
+            background: rgba(14, 66, 135, 0.3);
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -282,20 +389,13 @@
         .review-dot.active { background: var(--charcoal); }
 
         @media (max-width: 700px) {
-            .reviews-widget { width: 190px; top: 70px; left: 10px; padding: 1rem 1rem 0.8rem; }
-            .reviews-widget .reviews-mark { font-size: 1.8rem; }
-            .reviews-widget .review-text {
-                font-size: 0.8rem;
-                -webkit-line-clamp: 4;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-            .reviews-widget .review-author { font-size: 0.72rem; }
-        }
-
-        @media (max-width: 420px) {
-            .reviews-widget { width: 160px; }
+            .reviews-bar { padding: 0.6rem 2.6rem 0.6rem 1rem; }
+            .reviews-mark { font-size: 1.3rem; }
+            .reviews-bar-inner { flex-wrap: wrap; }
+            .review-text { font-size: 0.85rem; }
+            .review-author { font-size: 0.72rem; }
+            .reviews-dots { margin-left: 0; }
+            body { padding-bottom: 370px; }
         }
     </style>
 </head>
@@ -313,45 +413,12 @@
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
             </ul>
 
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
         </div>
     </nav>
-
-    <div class="reviews-widget" id="reviewsWidget">
-        <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
-        <div class="reviews-mark">&ldquo;</div>
-        <div class="reviews-slides">
-            <blockquote class="review-slide active">
-                <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
-                <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
-            </blockquote>
-            <blockquote class="review-slide">
-                <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
-                <cite class="review-author">Mylene &mdash; June 2026</cite>
-            </blockquote>
-            <blockquote class="review-slide">
-                <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
-                <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
-            </blockquote>
-            <blockquote class="review-slide">
-                <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
-                <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
-            </blockquote>
-            <blockquote class="review-slide">
-                <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
-                <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
-            </blockquote>
-        </div>
-        <div class="reviews-dots">
-            <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
-            <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
-            <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
-            <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
-            <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
-        </div>
-    </div>
 
     <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -361,6 +428,7 @@
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html" class="active">About</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
         </ul>
     </div>
 
@@ -385,48 +453,119 @@
         <div class="container">
             <h1 class="page-title">ABOUT</h1>
 
-            <div class="about-card">
-                <img src="images/louise-du-plessis.jpg" alt="Louise du Plessis" class="about-photo">
+            <div class="about-layout">
+                <div class="about-card">
+                    <div class="about-text">
+                        <img src="images/louise-du-plessis.jpg" alt="Louise du Plessis" class="about-photo">
+                        <p>Karoka is led by <strong>Louise du Plessis</strong>, an experienced English educator with 30 years of teaching across three countries and educational systems. Her career includes 7 years as a certified South African secondary school English teacher, 14 years as a certified Advanced Skills secondary school English teacher in the United Kingdom, and 9 years teaching middle and secondary school English in the French education system. This international expertise ensures every student receives instruction tailored to their unique needs and goals.</p>
 
-                <div class="about-text">
-                    <p>Karoka is led by <strong>Louise du Plessis</strong>, an experienced English educator with 30 years of teaching across three countries and educational systems.</p>
-                    <p>Her career includes 7 years as a certified South African secondary school English teacher, 14 years as a certified Advanced Skills secondary school English teacher in the United Kingdom, and 9 years teaching middle and secondary school English in the French education system.</p>
-                    <p>This international expertise ensures every student receives instruction tailored to their unique needs and goals.</p>
-                    <p class="cv-note">CV available upon request.</p>
+                        <h2 class="qualifications-title">Educational Qualifications</h2>
+                        <ul class="qualifications-list">
+                            <li>Specialist Leader in Education, UK (2013)</li>
+                            <li>Chartered London Teacher, UK (2009)</li>
+                            <li>Mentoring Training, University of London (2008)</li>
+                            <li>Advanced Skills Teacher, UK (2006)</li>
+                            <li>Leading Practitioner, UK (2002)</li>
+                            <li>Qualified Teacher Status, UK (2001) / SA (1993)</li>
+                        </ul>
 
-                    <a href="https://www.linkedin.com/in/louise-du-plessis-14a7a872/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        View LinkedIn Profile
-                    </a>
+                        <h2 class="qualifications-title">Core Competences</h2>
+                        <ul class="qualifications-list">
+                            <li>CEFR-aligned Lesson Planning and Delivery to CEFR level A1 to C2</li>
+                            <li>IELTS and other Language Proficiency Assessment Preparation</li>
+                            <li>English Language Curriculum Design</li>
+                            <li>Teacher Training and Mentorship:
+                                <ul>
+                                    <li>Curriculum-Aligned Training Delivery</li>
+                                    <li>Mentoring Early-Career Teachers</li>
+                                    <li>Intercultural Pedagogical Development</li>
+                                    <li>School-to-School Support &amp; Outreach</li>
+                                    <li>Programme Design &amp; Leadership</li>
+                                    <li>Innovation in Teaching Practices</li>
+                                    <li>Evaluation &amp; Reflective Practice</li>
+                                </ul>
+                            </li>
+                            <li>Educational Consultancy and Programme Coordination</li>
+                        </ul>
+
+                        <p class="cv-note">CV available upon request.</p>
+
+                        <div class="about-linkedin-wrap">
+                            <a href="https://www.linkedin.com/in/louise-du-plessis" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                                View LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="gallery-section">
-                <h2 class="gallery-title">Teaching in Action</h2>
-                <div class="photo-gallery">
-                    <figure class="gallery-item">
-                        <img src="images/photo-group-lesson.jpg" alt="Louise leading a small-group English lesson" loading="lazy">
-                        <figcaption>Small-group English lessons in Fort Dauphin</figcaption>
-                    </figure>
-                    <figure class="gallery-item">
-                        <img src="images/photo-rmi-training.jpg" alt="Louise leading a training session for Responsible Mica Initiative staff" loading="lazy">
-                        <figcaption>Training session for Responsible Mica Initiative (RMI) staff</figcaption>
-                    </figure>
-                    <figure class="gallery-item">
-                        <img src="images/photo-cafe-lesson.jpg" alt="An informal English lesson at a local café" loading="lazy">
-                        <figcaption>An informal lesson at a local café</figcaption>
-                    </figure>
+                <div class="gallery-section">
+                    <div class="photo-gallery">
+                        <figure class="gallery-item">
+                            <img src="images/photo-group-lesson.jpg" alt="Louise leading a small-group English lesson" width="1000" height="750" loading="lazy">
+                            <figcaption>Small-group English lessons in Fort Dauphin</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="images/photo-rmi-training.jpg" alt="Louise leading a training session for Responsible Mica Initiative staff" width="1000" height="750" loading="lazy">
+                            <figcaption>Training session for Responsible Mica Initiative (RMI) staff</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="images/photo-cafe-lesson.jpg" alt="An informal English lesson at a local café" width="1000" height="750" loading="lazy">
+                            <figcaption>An informal lesson at a local café</figcaption>
+                        </figure>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <section class="cta-section">
+            <p class="about-slogan">Professional. Personalised. Proven results.</p>
+        </section>
     </div>
 
-    <footer>
-        <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
-        <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
-    </footer>
+    <div class="bottom-bar-stack">
+        <div class="reviews-bar" id="reviewsWidget">
+            <div class="reviews-bar-inner">
+                <span class="reviews-mark">&ldquo;</span>
+                <div class="reviews-slides">
+                    <blockquote class="review-slide active">
+                        <p class="review-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                        <cite class="review-author">Manue Bricquot &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                        <cite class="review-author">Mylene &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                        <cite class="review-author">Brett Massoud &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                        <cite class="review-author">Alison Rakotomalala &mdash; June 2026</cite>
+                    </blockquote>
+                    <blockquote class="review-slide">
+                        <p class="review-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                        <cite class="review-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+                    </blockquote>
+                </div>
+                <div class="reviews-dots">
+                    <button class="review-dot active" onclick="showReview(0)" aria-label="Show review 1"></button>
+                    <button class="review-dot" onclick="showReview(1)" aria-label="Show review 2"></button>
+                    <button class="review-dot" onclick="showReview(2)" aria-label="Show review 3"></button>
+                    <button class="review-dot" onclick="showReview(3)" aria-label="Show review 4"></button>
+                    <button class="review-dot" onclick="showReview(4)" aria-label="Show review 5"></button>
+                </div>
+            </div>
+            <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
+        </div>
+        <footer>
+            <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
+            <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
+        </footer>
+    </div>
     <script>
         // Reviews carousel
         (function() {

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews | Karoka English Tutoring</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-192.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #7DA4ED;
+            --brand-blue-dark: #3D63B8;
+            --brand-blue-light: #C5D6F7;
+            --brand-green: #35AF78;
+            --brand-green-dark: #1E7A4C;
+            --brand-green-light: #A4DBC2;
+            --white: #ffffff;
+            --charcoal: #0E4287;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
+        html { font-size: 118%; }
+
+        body {
+            font-family: 'Aptos', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.45;
+            background-image:
+                url('images/karoka-logo-tile.png'),
+                url('images/karoka-logo-tile.png'),
+                linear-gradient(180deg, #3D63B8 0%, #1E7A4C 100%);
+            background-repeat: repeat, repeat, no-repeat;
+            background-size: 120px 120px, 120px 120px, cover;
+            background-position: 0 0, 60px 60px, center;
+            background-attachment: scroll, scroll, scroll;
+        }
+        h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+        .logo-img { height: 42px; width: auto; }
+        .nav-links { display: flex; gap: 0.7rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brand-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--brand-blue);
+            border-radius: 50px;
+            padding: 0.4rem 1.1rem;
+            transition: all 0.25s ease;
+            display: inline-block;
+        }
+        .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
+
+        .main-content { margin-top: 64px; padding: 1.1rem 5% 3rem; position: relative; overflow: hidden; }
+        .container { max-width: 1350px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .page-title {
+            display: table;
+            margin: 0 auto 0.5rem;
+            background: var(--white);
+            padding: 0.6rem 2.6rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            text-align: center;
+        }
+
+        .reviews-intro {
+            display: table;
+            margin: 0 auto 1.6rem;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            max-width: 640px;
+        }
+
+        /* Review rows -- a text-only quote box plus a separate decorative
+           photo alongside it, alternating which side the photo sits on
+           (right, left, right, left, right...) per row. The photo is a
+           sibling of the box, not nested inside its border/background --
+           deliberately not presented as "this is a picture of that
+           reviewer" or otherwise matched to the specific quote, just a
+           lesson photo placed beside it, alternating sides down the page. */
+        .reviews-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .review-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .review-row.photo-right { flex-direction: row-reverse; }
+
+        .review-photo {
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .review-card {
+            flex: 1;
+            background: var(--brand-blue-light);
+            border: 3px solid var(--brand-blue-dark);
+            border-radius: 28px;
+            padding: 1.3rem 1.6rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .reviews-grid > .review-row:nth-child(even) .review-card {
+            background: var(--brand-green-light);
+            border-color: var(--brand-green-dark);
+        }
+
+        .review-card-text {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--charcoal);
+        }
+
+        .review-card-author {
+            display: block;
+            margin-top: 0.6rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-style: normal;
+            color: var(--charcoal);
+        }
+
+        @media (max-width: 640px) {
+            .review-row, .review-row.photo-right { flex-direction: column; text-align: center; }
+            .review-photo { width: 120px; height: 120px; }
+        }
+
+        /* "Leave a review" card, with a simple password gate in front of
+           the Google Form link -- see the code comment near the script
+           at the bottom for exactly what this does and doesn't protect. */
+        .leave-review-card {
+            max-width: 620px;
+            margin: 2rem auto 0;
+            background: var(--white);
+            border: 3px solid var(--brand-blue-dark);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .leave-review-title {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-bottom: 0.6rem;
+        }
+
+        .leave-review-text {
+            font-size: 1rem;
+            color: var(--charcoal);
+            margin-bottom: 1.2rem;
+        }
+
+        .review-gate-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .review-gate-row {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .review-gate-input {
+            padding: 0.65rem 1rem;
+            border: 2px solid var(--brand-blue);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Aptos', sans-serif;
+            min-width: 200px;
+        }
+
+        .review-gate-button {
+            padding: 0.65rem 1.6rem;
+            background: var(--brand-blue-dark);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .review-gate-button:hover { transform: translateY(-2px); }
+
+        .review-gate-error {
+            color: #B3261E;
+            font-size: 0.9rem;
+            margin-top: 0.7rem;
+            font-weight: 600;
+        }
+
+        .review-form-link {
+            display: inline-block;
+            margin-top: 0.3rem;
+            padding: 0.75rem 2rem;
+            background: var(--brand-green-dark);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+            transition: transform 0.2s ease;
+        }
+
+        .review-form-link:hover { transform: translateY(-2px); }
+
+        /* Needed because .review-form-link's own "display: inline-block"
+           above has the same specificity as the browser's default
+           "[hidden] { display: none }" rule and comes later in the
+           cascade -- without this, the hidden attribute would be silently
+           ignored and the button would show before the password check. */
+        .review-form-link[hidden] { display: none; }
+
+        /* Full-width gradient banner, matching the same slogan banner now
+           used on the home/services/rates/about pages. */
+        .cta-section {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: 32px;
+            padding: 0.9rem 5%;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
+            text-align: center;
+        }
+
+        .reviews-slogan {
+            display: table;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 2px solid var(--brand-blue-dark);
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        footer { background: var(--brand-blue-dark); color: var(--white); text-align: center; padding: 0.7rem 5%; }
+        .footer-text { opacity: 0.85; font-size: 0.7rem; }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--brand-blue);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        .mobile-menu.active { display: block; }
+        .mobile-menu ul { list-style: none; padding: 1rem 0; }
+        .mobile-menu ul li { border-bottom: 1px solid #eee; }
+        .mobile-menu ul li a {
+            display: block;
+            padding: 1rem 5%;
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .mobile-menu ul li a:hover, .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
+
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/karoka-logo.png" alt="Karoka Logo" class="logo-img">
+                <span style="font-size:1.5rem; font-weight:700; color:var(--brand-blue); letter-spacing:0.05em;">KAROKA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="rates.html">Rates</a></li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reviews.html" class="active">Reviews</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="rates.html">Rates</a></li>
+            <li><a href="policies.html">Policies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviews.html" class="active">Reviews</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-title">REVIEWS</h1>
+            <p class="reviews-intro">What clients say about lessons and consultancy work with Karoka.</p>
+
+            <div class="reviews-grid">
+                <div class="review-row photo-right">
+                    <img src="images/photo-group-lesson.jpg" alt="Small-group English lesson" class="review-photo">
+                    <div class="review-card">
+                        <p class="review-card-text">Louise is an amazing English teacher! Really professional, she knows how to adapt her course content to your specific needs. Don't miss this opportunity to learn 🙂</p>
+                        <cite class="review-card-author">Manue Bricquot &mdash; June 2026</cite>
+                    </div>
+                </div>
+
+                <div class="review-row photo-left">
+                    <img src="images/photo-cafe-lesson.jpg" alt="Informal English lesson at a local cafe" class="review-photo">
+                    <div class="review-card">
+                        <p class="review-card-text">I also recommend Louise as an English teacher. She is professional, attentive, and an excellent educator.</p>
+                        <cite class="review-card-author">Mylene &mdash; June 2026</cite>
+                    </div>
+                </div>
+
+                <div class="review-row photo-right">
+                    <img src="images/photo-online-lesson.jpg" alt="Online English lesson" class="review-photo">
+                    <div class="review-card">
+                        <p class="review-card-text">Louise has done a wonderful job with private lessons for our 7-year-old, who started terrified of learning English about 3 months ago and now looks forward to Louise's arrival and never wants her to leave ❤️❤️❤️</p>
+                        <cite class="review-card-author">Brett Massoud &mdash; June 2026</cite>
+                    </div>
+                </div>
+
+                <div class="review-row photo-left">
+                    <img src="images/photo-team-planning.jpg" alt="Planning session with the Karoka team" class="review-photo">
+                    <div class="review-card">
+                        <p class="review-card-text">Louise has been working with a few of our teachers and she is excellent at diagnosing and addressing grammatical challenges! The best English instruction in town, by someone who also has a deep understanding of pedagogy. ⭐️⭐️⭐️⭐️⭐️</p>
+                        <cite class="review-card-author">Alison Rakotomalala &mdash; June 2026</cite>
+                    </div>
+                </div>
+
+                <div class="review-row photo-right">
+                    <img src="images/photo-rmi-training.jpg" alt="RMI staff training session" class="review-photo">
+                    <div class="review-card">
+                        <p class="review-card-text">The pronunciation and intonation were what I enjoyed the most, along with the wide variety of vocabulary.</p>
+                        <cite class="review-card-author">Paul Mahatoky, Responsible Mica Initiative &mdash; May 2026</cite>
+                    </div>
+                </div>
+            </div>
+
+            <div class="leave-review-card">
+                <h2 class="leave-review-title">Have You Worked With Karoka?</h2>
+                <p class="leave-review-text">We'd love to hear about your experience! This review form is for current and former Karoka clients only.</p>
+
+                <div id="reviewGate">
+                    <label for="reviewPassword" class="review-gate-label">Enter the client password to continue:</label>
+                    <div class="review-gate-row">
+                        <input type="password" id="reviewPassword" class="review-gate-input" placeholder="Password" autocomplete="off">
+                        <button type="button" class="review-gate-button" onclick="checkReviewPassword()">Continue</button>
+                    </div>
+                    <p id="reviewGateError" class="review-gate-error" hidden>That's not quite right &mdash; check with Louise if you're not sure of the password.</p>
+                </div>
+
+                <a id="reviewFormLink" class="review-form-link" href="https://forms.gle/uLXYzbMXD51wCBjv6" target="_blank" rel="noopener noreferrer" hidden>Open the Review Form &rarr;</a>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <p class="reviews-slogan">Professional. Personalised. Proven results.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p class="footer-text">© 2026 Karoka SARLU | Stat no: 85493 53 2025 0 00087 | NIF No: 3019127147</p>
+        <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
+    </footer>
+
+    <script>
+        // Simple client-side gate in front of the Google Form link below.
+        // IMPORTANT -- this is a casual deterrent, not real security: this
+        // is a static site with no server/login system, so anyone who
+        // opens the page's source code (view-source, browser dev tools)
+        // can read CLIENT_PASSWORD and see the form link directly. It only
+        // stops the link from being casually stumbled on by search engines
+        // or random visitors clicking around -- it will not stop someone
+        // who deliberately goes looking. If you ever need genuine
+        // access control, that requires a backend (e.g. a login system or
+        // a paid form tool with real restrictions), which a plain
+        // GitHub-Pages-style static site like this one can't provide.
+        //
+        // To change the password, just edit the line below and re-publish
+        // this file.
+        const CLIENT_PASSWORD = "Karoka2026";
+
+        function checkReviewPassword() {
+            const input = document.getElementById('reviewPassword');
+            const error = document.getElementById('reviewGateError');
+            if (input.value.trim().toLowerCase() === CLIENT_PASSWORD.toLowerCase()) {
+                document.getElementById('reviewGate').style.display = 'none';
+                document.getElementById('reviewFormLink').hidden = false;
+                error.hidden = true;
+            } else {
+                error.hidden = false;
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        document.getElementById('reviewPassword').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkReviewPassword();
+        });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (menu.classList.contains('active') &&
+                !menu.contains(event.target) &&
+                !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

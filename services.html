@@ -21,13 +21,32 @@
             --brand-green-dark: #1E7A4C;
             --brand-green-light: #A4DBC2;
             --white: #ffffff;
-            --charcoal: #2a2a2a;
+            --charcoal: #0E4287;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
         html { font-size: 118%; }
 
-        body { font-family: 'Aptos', sans-serif; color: var(--charcoal); line-height: 1.45; background: var(--brand-blue); }
+        body {
+            font-family: 'Aptos', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.45;
+            /* K logo tiled over a blue-to-green gradient. karoka-logo-tile.png
+               is a processed copy of the logo with the white background made
+               transparent, the swirl/circle faded to ~53% opacity, and padded
+               to a 231px canvas so the circle fills exactly ~70% of the tile
+               -- at that fraction, two copies staggered by a half-tile
+               diagonal offset (whose centres sit ~70.7% of the tile pitch
+               apart) just touch at the edges without overlapping. */
+            background-image:
+                url('images/karoka-logo-tile.png'),
+                url('images/karoka-logo-tile.png'),
+                linear-gradient(180deg, #3D63B8 0%, #1E7A4C 100%);
+            background-repeat: repeat, repeat, no-repeat;
+            background-size: 120px 120px, 120px 120px, cover;
+            background-position: 0 0, 60px 60px, center;
+            background-attachment: scroll, scroll, scroll;
+        }
         h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
 
         nav {
@@ -57,7 +76,7 @@
         }
         .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
 
-        .main-content { margin-top: 64px; padding: 1.1rem 5%; position: relative; overflow: hidden; }
+        .main-content { margin-top: 64px; padding: 1.1rem 5% 3rem; position: relative; overflow: hidden; }
         .container { max-width: 1350px; margin: 0 auto; position: relative; z-index: 1; }
 
         .page-title {
@@ -65,7 +84,7 @@
             margin: 0 auto 0.9rem;
             background: var(--white);
             padding: 0.6rem 2.6rem;
-            border-radius: 24px 24px 24px 6px;
+            border-radius: 24px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             font-size: 2.3rem;
             font-weight: 800;
@@ -100,7 +119,14 @@
             grid-template-columns: 1fr 1fr;
             gap: 1.2rem;
             margin-top: 14px;
-            align-items: start;
+            /* stretch (not start): both .services-col stretch to match the
+               taller column's height, so the NGO box's margin-top: auto
+               (below) can push it down to align with the bottom of
+               whichever column is taller -- normally the Tutoring+Reviews
+               one. This adapts automatically to the reviews carousel's
+               random starting review, instead of a fixed pixel value that
+               would only line up for one specific review's height. */
+            align-items: stretch;
         }
 
         /* Each column stacks its own two boxes independently, so the NGO
@@ -114,15 +140,13 @@
         .service-block {
             background: var(--brand-green-light);
             padding: 1.9rem 1.5rem 0.4rem;
-            border-radius: 30px 30px 30px 8px;
+            border-radius: 30px;
             color: var(--charcoal);
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             position: relative;
             margin-top: 16px;
             border: 3px solid var(--brand-blue-dark);
         }
-
-        .services-col:nth-child(2) .service-block { border-radius: 30px 30px 8px 30px; }
 
         .service-header {
             position: absolute;
@@ -230,10 +254,10 @@
         }
 
         .discount-banner {
-            margin-top: 40px;
+            margin-top: auto;
             padding: 2.3rem 1.4rem 0.9rem;
             background: linear-gradient(90deg, var(--brand-blue-light) 0%, var(--brand-green-light) 100%);
-            border-radius: 8px 30px 30px 30px;
+            border-radius: 30px;
             color: var(--charcoal);
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -276,34 +300,60 @@
             font-size: 0.95rem;
         }
 
-        /* Slogan from the home page's CTA banner (.cta-tagline there),
-           reused here to fill the space left under the shorter right
-           column now that it's top-aligned again (not vertically centred
-           the way Round 13 had it). */
+        /* Full-width gradient banner, matching the home page's .cta-section
+           exactly -- placed as a sibling of .container (not nested inside
+           it) so its background isn't capped by .container's max-width.
+           The 100vw/-50vw trick breaks it out of .main-content's own 5%
+           side padding to reach the true edges of the viewport, the same
+           way the home page's banner (which has no such ancestor padding
+           at all) already does. */
+        .cta-section {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: 24px;
+            padding: 0.9rem 5%;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
+            text-align: center;
+        }
+
+        /* Slogan from the home page's CTA banner (.cta-tagline there) --
+           matches that page's white boxed-pill treatment exactly, and as
+           of this round sits inside the same gradient banner too. */
         .services-slogan {
-            margin-top: 16px;
-            text-align: right;
-            font-size: 1.15rem;
+            display: table;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 2px solid var(--brand-blue-dark);
+            font-size: 1.5rem;
             font-style: italic;
             font-weight: 600;
             color: var(--charcoal);
-            opacity: 0.85;
-            padding: 0 0.6rem;
         }
 
-        @media (max-width: 900px) {
-            .services-slogan { text-align: center; }
-        }
-
-        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 0.7rem 5%; }
-        .footer-text { opacity: 0.75; font-size: 0.78rem; }
+        footer { background: var(--brand-blue-dark); color: var(--white); text-align: center; padding: 0.4rem 5%; }
+        .footer-text { opacity: 0.85; font-size: 0.7rem; }
 
         @media (max-width: 900px) {
             .services-grid { grid-template-columns: 1fr; }
             .discount-stats { grid-template-columns: 1fr; }
             /* Single column now: the two .services-col wrappers simply stack,
                giving Tutoring, Reviews, Consultancy, NGO in that order --
-               each box still directly under the one it pairs with. */
+               each box still directly under the one it pairs with.
+               margin-top: auto on .discount-banner only does anything when
+               its column is stretched taller by a side-by-side sibling
+               (the desktop 2-column layout); stacked single-column here,
+               there's no sibling to stretch against, so auto collapses to
+               0 and the NGO box's floating icon would touch the Consultancy
+               card above it (the Round 14 bug) without this fixed minimum. */
+            .discount-banner { margin-top: 40px; }
         }
 
         @media (max-width: 768px) {
@@ -344,10 +394,24 @@
             text-decoration: none;
             color: var(--charcoal);
             font-weight: 500;
+            text-align: center;
             transition: background 0.3s;
         }
         .mobile-menu ul li a:hover,
         .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
+
+        /* This page's own 768px breakpoint above never actually showed the
+           hamburger button (it only hid .nav-links), so below 768px there
+           was no way to open the menu at all -- and the nav links need more
+           room than 768px allows anyway, wrapping onto a second line and
+           overlapping the content underneath between roughly 769px and
+           1020px. This single rule (placed after the display:none default
+           above, so it isn't overridden by it) fixes both: hamburger shown,
+           nav single-line, at every tablet and phone width. */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; }
+        }
 
         /* Reviews */
         /* The widget used to float as a fixed overlay, but once the page got
@@ -362,10 +426,10 @@
            or viewport size. */
         .reviews-widget {
             position: relative;
-            margin-top: 16px;
+            margin-top: 40px;
             background: var(--brand-blue-light);
             border-radius: 16px;
-            padding: 0.9rem 1.2rem 0.7rem;
+            padding: 1.8rem 1.2rem 0.7rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
             border: 3px solid var(--brand-blue-dark);
         }
@@ -388,7 +452,7 @@
 
         .reviews-mark {
             font-size: 1.4rem;
-            color: rgba(42, 42, 42, 0.35);
+            color: rgba(14, 66, 135, 0.35);
             line-height: 1;
             margin-bottom: -0.1rem;
         }
@@ -425,7 +489,7 @@
             padding: 0;
             border: none;
             border-radius: 50%;
-            background: rgba(42, 42, 42, 0.25);
+            background: rgba(14, 66, 135, 0.25);
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -433,7 +497,7 @@
         .review-dot.active { background: var(--charcoal); }
 
         @media (max-width: 700px) {
-            .reviews-widget { padding: 1rem 1.1rem 0.85rem; }
+            .reviews-widget { padding: 1.7rem 1.1rem 0.85rem; }
             .reviews-widget .reviews-mark { font-size: 1.6rem; }
             .reviews-widget .review-text { font-size: 0.9rem; }
             .reviews-widget .review-author { font-size: 0.78rem; }
@@ -454,6 +518,7 @@
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
             </ul>
 
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
@@ -468,6 +533,7 @@
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
         </ul>
     </div>
 
@@ -517,6 +583,10 @@
                 </div>
 
                 <div class="reviews-widget" id="reviewsWidget">
+                    <div class="service-header">
+                        <span class="service-icon">⭐</span>
+                        <div class="service-title-pill"><h2 class="service-title">Reviews</h2></div>
+                    </div>
                     <button class="reviews-close" onclick="closeReviews()" aria-label="Close reviews">&times;</button>
                     <div class="reviews-mark">&ldquo;</div>
                     <div class="reviews-slides">
@@ -587,11 +657,14 @@
                         </div>
                     </div>
                 </div>
-
-                <p class="services-slogan">Professional. Personalised. Proven results.</p>
               </div>
             </div>
+
         </div>
+
+        <section class="cta-section">
+            <p class="services-slogan">Professional. Personalised. Proven results.</p>
+        </section>
     </div>
 
     <footer>
