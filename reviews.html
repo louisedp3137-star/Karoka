@@ -12,19 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
     <style>
-        :root {
-            --brand-blue: #7DA4ED;
-            --brand-blue-dark: #3D63B8;
-            --brand-blue-light: #C5D6F7;
-            --brand-green: #35AF78;
-            --brand-green-dark: #1E7A4C;
-            --brand-green-light: #A4DBC2;
-            --white: #ffffff;
-            --charcoal: #0E4287;
-        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
         html { font-size: 118%; }
 
         body {
@@ -40,35 +30,8 @@
             background-position: 0 0, 60px 60px, center;
             background-attachment: scroll, scroll, scroll;
         }
-        h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 0.6rem 5%;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo-container { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-        .logo-img { height: 42px; width: auto; }
-        .nav-links { display: flex; gap: 0.7rem; list-style: none; flex-wrap: wrap; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--brand-blue);
-            font-weight: 600;
-            font-size: 1rem;
-            border: 2px solid var(--brand-blue);
-            border-radius: 50px;
-            padding: 0.4rem 1.1rem;
-            transition: all 0.25s ease;
-            display: inline-block;
-        }
-        .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
+        
 
         .main-content { margin-top: 64px; padding: 1.1rem 5% 3rem; position: relative; overflow: hidden; }
         .container { max-width: 1350px; margin: 0 auto; position: relative; z-index: 1; }
@@ -285,49 +248,9 @@
             color: var(--charcoal);
         }
 
-        footer { background: var(--brand-blue-dark); color: var(--white); text-align: center; padding: 0.7rem 5%; }
-        .footer-text { opacity: 0.85; font-size: 0.7rem; }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--brand-blue);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 64px;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-
-        .mobile-menu.active { display: block; }
-        .mobile-menu ul { list-style: none; padding: 1rem 0; }
-        .mobile-menu ul li { border-bottom: 1px solid #eee; }
-        .mobile-menu ul li a {
-            display: block;
-            padding: 1rem 5%;
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            text-align: center;
-            transition: background 0.3s;
-        }
-        .mobile-menu ul li a:hover, .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
-
-        @media (max-width: 1024px) {
-            .nav-links { display: none; }
-            .mobile-menu-toggle { display: block; }
-        }
+        /* Footer padding is the one real per-page difference left after
+           moving the shared footer rule to shared.css. */
+        footer { padding: 0.7rem 5%; }
     </style>
 </head>
 <body>
@@ -436,6 +359,7 @@
         <p class="footer-text" style="margin-top: 0.3rem;">Professional English Tutoring & Educational Consultancy | Fort Dauphin, Madagascar</p>
     </footer>
 
+    <script src="shared.js"></script>
     <script>
         // Simple client-side gate in front of the Google Form link below.
         // IMPORTANT -- this is a casual deterrent, not real security: this
@@ -470,21 +394,6 @@
         document.getElementById('reviewPassword').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') checkReviewPassword();
         });
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobileMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            if (menu.classList.contains('active') &&
-                !menu.contains(event.target) &&
-                !toggle.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+</script>
 </body>
 </html>

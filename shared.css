@@ -1,0 +1,198 @@
+/* ============================================================
+   Karoka — shared stylesheet (nav, mobile menu, footer, reviews bar)
+   ============================================================
+   Consolidated from the 7 pages' individually-duplicated CSS so that a
+   future change to the nav, footer or reviews carousel only has to be
+   made once, here, instead of by hand in every page. See
+   claude/site-notes.md (Round 34) for the full history of this change.
+
+   A few small, genuine per-page differences (index.html's nav has no
+   logo and is a touch taller; the Reviews page's plain footer uses more
+   padding since it has no reviews-bar above it) are NOT included here --
+   they're kept as short overrides in each of those pages' own <style>
+   block, placed AFTER the <link> to this file, so the cascade applies
+   them correctly without duplicating everything else in this file too.
+
+   services.html keeps its own distinctly-styled in-flow reviews widget
+   (a different visual treatment, by design, since Round 6) -- it reuses
+   several of the same class names below (.reviews-mark, .review-text,
+   etc.) with its own values, declared in its own <style> block after
+   this file, which is what makes its widget look different from the
+   fixed reviews-bar every other page uses.
+   ============================================================ */
+
+:root {
+    --brand-blue: #7DA4ED;
+    --brand-blue-dark: #3D63B8;
+    --brand-blue-light: #C5D6F7;
+    --brand-green: #35AF78;
+    --brand-green-dark: #1E7A4C;
+    --brand-green-light: #A4DBC2;
+    --white: #ffffff;
+    --charcoal: #0E4287;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Aptos', sans-serif; }
+
+h1, h2, h3 { font-family: 'Aptos', sans-serif; font-weight: 700; }
+
+/* ---------- Nav ---------- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.6rem 5%;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+}
+
+.nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo-container { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.logo-img { height: 42px; width: auto; }
+
+.nav-links { display: flex; gap: 0.7rem; list-style: none; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; color: var(--brand-blue); font-weight: 600; font-size: 1rem; border: 2px solid var(--brand-blue); border-radius: 50px; padding: 0.4rem 1.1rem; transition: all 0.25s ease; display: inline-block; }
+.nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
+
+@media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .mobile-menu-toggle { display: block; }
+}
+
+/* ---------- Mobile menu ---------- */
+.mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--brand-blue); cursor: pointer; padding: 0.5rem; }
+.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 999; }
+.mobile-menu.active { display: block; }
+.mobile-menu ul { list-style: none; padding: 1rem 0; }
+.mobile-menu ul li { border-bottom: 1px solid #eee; }
+.mobile-menu ul li a { display: block; padding: 1rem 5%; text-decoration: none; color: var(--charcoal); font-weight: 500; text-align: center; transition: background 0.3s; }
+.mobile-menu ul li a:hover, .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
+
+/* ---------- Footer ---------- */
+/* Padding is left out here on purpose -- it's one of the few genuine
+   per-page differences (0.4rem everywhere except Reviews' 0.7rem, since
+   that page has no reviews-bar sitting above its footer) -- see each
+   page's own remaining <style> block for its one-line override. */
+footer { background: var(--brand-blue-dark); color: var(--white); text-align: center; }
+.footer-text { opacity: 0.85; font-size: 0.7rem; }
+
+/* ---------- Reviews bar + footer, stacked and pinned to the bottom
+   (index, about, rates, policies, contact only -- services.html and
+   reviews.html don't use .bottom-bar-stack/.reviews-bar at all, so
+   these rules are simply unused, harmless CSS on those two pages) ---------- */
+.bottom-bar-stack {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+}
+
+.reviews-bar {
+    background: var(--brand-green-light);
+    border-top: 3px solid var(--brand-blue-dark);
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+    padding: 0.7rem 3.2rem 0.7rem 1.4rem;
+}
+
+.reviews-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.reviews-close {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--charcoal);
+    opacity: 0.45;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.reviews-close:hover { opacity: 0.85; }
+
+.reviews-mark {
+    font-size: 1.6rem;
+    color: rgba(14, 66, 135, 0.35);
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.reviews-slides {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+}
+
+.review-slide { display: none; }
+.review-slide.active { display: block; animation: reviewFade 0.6s ease; }
+
+@keyframes reviewFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.review-text {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.35;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.review-author {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--charcoal);
+    font-size: 0.82rem;
+    text-align: center;
+}
+
+.reviews-dots {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    align-self: center;
+    margin-left: 0.6rem;
+    justify-content: center;
+}
+
+.review-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(14, 66, 135, 0.3);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.review-dot.active { background: var(--charcoal); }
+
+@media (max-width: 700px) {
+    .reviews-bar { padding: 0.6rem 2.6rem 0.6rem 1rem; }
+    .reviews-mark { font-size: 1.3rem; }
+    .reviews-bar-inner { flex-wrap: wrap; }
+    .review-text { font-size: 0.85rem; }
+    .review-author { font-size: 0.72rem; }
+    .reviews-dots { margin-left: 0; }
+    /* body's own extra bottom padding at this width is NOT included here
+       -- it only applies to the 5 pages with a fixed .bottom-bar-stack,
+       and stays as a one-line override in each of those pages' own
+       <style> block, so it doesn't leak onto services.html/reviews.html
+       (which have no fixed bar and don't need it). */
+}
