@@ -56,11 +56,6 @@ nav {
 .nav-links a { text-decoration: none; color: var(--brand-blue); font-weight: 600; font-size: 1rem; border: 2px solid var(--brand-blue); border-radius: 50px; padding: 0.4rem 1.1rem; transition: all 0.25s ease; display: inline-block; }
 .nav-links a:hover, .nav-links a.active { background: var(--brand-blue); color: var(--white); }
 
-@media (max-width: 1024px) {
-    .nav-links { display: none; }
-    .mobile-menu-toggle { display: block; }
-}
-
 /* ---------- Mobile menu ---------- */
 .mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--brand-blue); cursor: pointer; padding: 0.5rem; }
 .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 999; }
@@ -69,6 +64,22 @@ nav {
 .mobile-menu ul li { border-bottom: 1px solid #eee; }
 .mobile-menu ul li a { display: block; padding: 1rem 5%; text-decoration: none; color: var(--charcoal); font-weight: 500; text-align: center; transition: background 0.3s; }
 .mobile-menu ul li a:hover, .mobile-menu ul li a.active { background: #f0f4fb; color: var(--brand-blue); }
+
+/* This rule must come AFTER the .mobile-menu-toggle base rule above (both
+   set the same property at equal specificity, so whichever is later in
+   the file wins the cascade at widths <=1024px) -- it was accidentally
+   placed before that base rule during the Round 34 CSS consolidation,
+   which silently kept the hamburger button hidden at every width on any
+   page that didn't already have its own compensating override (Round 35
+   bugfix: about.html, reviews.html, services.html and policies.html were
+   affected; index.html/rates.html/contact.html had a page-specific
+   override that happened to mask it below their own narrower breakpoint,
+   but still had a dead zone with no way to open the nav between roughly
+   1024px and that breakpoint). */
+@media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .mobile-menu-toggle { display: block; }
+}
 
 /* ---------- Footer ---------- */
 /* Padding is left out here on purpose -- it's one of the few genuine

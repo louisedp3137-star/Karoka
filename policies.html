@@ -228,20 +228,9 @@
 
         @media (max-width: 768px) { .nav-links { display: none; } .page-title { font-size: 1.2rem; padding: 0.5rem 1.4rem; } }
 
-        
-
-        /* This page's own 768px breakpoint above never actually showed the
-           hamburger button (it only hid .nav-links), so below 768px there
-           was no way to open the menu at all -- and the nav links need more
-           room than 768px allows anyway, wrapping onto a second line and
-           overlapping the content underneath between roughly 769px and
-           1020px. This single rule (placed after the display:none default
-           above, so it isn't overridden by it) fixes both: hamburger shown,
-           nav single-line, at every tablet and phone width. */
-
-        
-
-        
+        /* (the hamburger-button-visibility rule this used to need lives in
+           shared.css's @media(max-width:1024px) block now -- see Round 35
+           fix note there) */
 
         
 
