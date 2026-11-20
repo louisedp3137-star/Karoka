@@ -120,6 +120,15 @@
             margin-bottom: 0.4rem;
         }
 
+        /* Tutoring has 5 cards -- 3 columns splits them 3+2 (centred,
+           balanced) instead of the default 4 columns' lopsided 4+1. */
+        .services-grid.tutoring {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .service-card {
             position: relative;
             background: var(--brand-blue-light);
@@ -345,14 +354,14 @@
            overridden by it. */
 
         @media (max-width: 968px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid, .services-grid.tutoring { grid-template-columns: repeat(2, 1fr); max-width: none; }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-toggle { display: block; }
             .page-title { font-size: 1.5rem; padding: 0.5rem 1.6rem; }
-            .services-grid { grid-template-columns: 1fr; }
+            .services-grid, .services-grid.tutoring { grid-template-columns: 1fr; }
             .pricing-grid { grid-template-columns: 1fr; }
             /* Cards stack in a single column here, so there's no side-by-side
                row to keep aligned -- let each pill size to its own text
@@ -423,7 +432,7 @@
             <div id="serviceSelector">
                 <h2 class="category-title">English Tutoring</h2>
 
-                <div class="services-grid">
+                <div class="services-grid tutoring">
                     <div class="service-card" onclick="showRates('english-competency')">
                         <div class="service-card-header">
                         <div class="service-icon-badge">📚</div>
