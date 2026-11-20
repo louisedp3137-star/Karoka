@@ -68,6 +68,25 @@
             text-align: center;
         }
 
+        .flyer-download-link {
+            display: table;
+            margin: 0 auto 1.4rem;
+            background: var(--white);
+            color: var(--brand-blue-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 0.45rem 1.4rem;
+            border-radius: 50px;
+            border: 2px solid var(--brand-blue-dark);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .flyer-download-link:hover {
+            color: var(--brand-green-dark);
+            border-color: var(--brand-green-dark);
+        }
+
         .category-title {
             display: table;
             margin: 0.9rem auto 0.7rem;
@@ -388,6 +407,7 @@
         <div class="container">
             <h1 class="page-title">RATES</h1>
             <p class="subtitle-box">Select a service to view rates (January 2026)</p>
+            <a href="files/Karoka-Flyer-2027.pdf" class="flyer-download-link" download>📄 Download our printable flyer &amp; 2027 rate card (PDF)</a>
 
             <!-- Service Selection -->
             <div id="serviceSelector">

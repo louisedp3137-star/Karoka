@@ -48,9 +48,40 @@
 
         
 
+        /* Announcement banner -- see the HTML comment just above the
+           .announcement-banner element below for how to edit/remove it. */
+        .announcement-banner {
+            margin-top: 77px;
+            padding: 0.6rem 5%;
+            background: linear-gradient(90deg, var(--brand-green-dark) 0%, var(--brand-blue-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .announcement-banner .banner-icon {
+            margin-right: 0.5rem;
+        }
+
+        /* Below 1024px the nav switches to its hamburger layout, which
+           renders a touch taller than the desktop nav -- match that here
+           so the banner never sits partly under the nav bar. */
+        @media (max-width: 1024px) {
+            .announcement-banner {
+                margin-top: 85px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .announcement-banner {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Hero Section - Compact, horizontal */
         .hero {
-            margin-top: 62px;
+            margin-top: 0;
             padding: 0.7rem 5%;
             background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-green) 100%);
             text-align: center;
@@ -268,6 +299,13 @@
             box-shadow: 0 12px 26px rgba(0,0,0,0.2);
         }
 
+        /* Second CTA button, same shape/size as .cta-button, green-bordered
+           so the two read as a pair without competing for attention. */
+        .cta-button.secondary {
+            border-color: var(--brand-green-dark);
+            margin-top: 0.6rem;
+        }
+
         
 
         
@@ -366,6 +404,17 @@
     </div>
 
     <div class="page-center">
+            <!-- ANNOUNCEMENT BANNER: to change what visitors see, just edit the
+                 text inside <span class="announcement-text">...</span> below
+                 and re-upload this file -- no other changes needed. To remove
+                 it entirely, delete this whole <div class="announcement-banner">
+                 block (and the matching comment). To bring it back later, you
+                 (or Claude) can paste this same block back in. -->
+            <div class="announcement-banner">
+                <span class="banner-icon">📢</span>
+                <span class="announcement-text">2027 hourly rates and exciting new IELTS exam training coming soon&hellip;</span>
+            </div>
+
             <section class="hero">
                 <div class="hero-content">
                     <img src="images/karoka-hero-logo.png" alt="Karoka Full Logo" class="hero-logo">
@@ -429,7 +478,7 @@
 
                     <div class="lesson-tiles">
                         <img src="images/photo-online-lesson.jpg" alt="Online English lesson" width="1000" height="528">
-                        <img src="images/photo-team-planning.jpg" alt="Planning session with the Karoka team" width="1000" height="750">
+                        <img src="images/photo-team-meeting.jpg" alt="Karoka team meeting, reviewing documents together" width="1000" height="750">
                     </div>
                 </div>
             </section>
@@ -437,6 +486,7 @@
             <section class="cta-section">
                 <p class="cta-tagline">Professional. Personalised. Proven results.</p>
                 <a href="contact.html" class="cta-button">Get Started Today</a>
+                <a href="files/Karoka-Flyer-2027.pdf" class="cta-button secondary" download>📄 Download Our Flyer (PDF)</a>
             </section>
     </div>
 
