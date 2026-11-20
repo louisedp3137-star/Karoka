@@ -80,7 +80,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
-            width: 180px;
+            width: 250px;
             flex-shrink: 0;
         }
 
@@ -101,8 +101,8 @@
             border: 3px solid var(--brand-blue-dark);
             padding: 1.4rem 1.6rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            max-width: 600px;
-            flex: 1 1 400px;
+            max-width: 700px;
+            flex: 1 1 450px;
         }
 
         .about-text {
@@ -172,14 +172,30 @@
             margin-bottom: 0.15rem;
         }
 
-        /* Below 700px each 3-photo column becomes a horizontal row instead
-           of a tall vertical stack, so the page doesn't get excessively
-           long on mobile. */
-        /* Below 700px the bio card and photo columns no longer sit side
-           by side (.about-layout wraps), so the "stretch to match card
-           height" behaviour above doesn't apply -- each column instead
-           becomes a plain horizontal row of fixed-ratio tiles. */
-        @media (max-width: 700px) {
+        /* Below 1024px (the same breakpoint the nav switches to its
+           hamburger menu at) each 3-photo column becomes a horizontal row
+           instead of a tall vertical stack. This threshold matters more
+           than it looks: the three-wide layout above needs roughly
+           1250px to fit all three items (two 250px photo columns + the
+           bio card) on one flex line. Below that but above a narrower
+           cutoff, .about-layout's flex-wrap used to let just the right
+           photo column wrap onto its own second line -- with nothing
+           beside it to stretch against, its flex:1 1 0 / min-height:0
+           images collapsed to near-zero height (a real bug, caught by
+           screenshot review). Jumping straight to the row layout at
+           1024px skips that broken middle zone entirely. */
+        @media (max-width: 1300px) {
+            /* Force the outer layout to stack in document order (left
+               photo row, bio card, right photo row) instead of relying
+               on flex-wrap to break a row -- a wrapped row still
+               inherits .about-layout's align-items:stretch from its line,
+               which is what caused the collapse bug above. A column
+               direction has no "line" to stretch against, so each child
+               just sizes to its own content, reliably, at any width. */
+            .about-layout {
+                flex-direction: column;
+                align-items: center;
+            }
             .about-photos {
                 flex-direction: row;
                 width: 100%;
@@ -291,6 +307,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="rates.html">Rates</a></li>
+                <li><a href="ielts.html">IELTS</a></li>
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
@@ -306,6 +323,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="rates.html">Rates</a></li>
+            <li><a href="ielts.html">IELTS</a></li>
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html" class="active">About</a></li>
             <li><a href="reviews.html">Reviews</a></li>

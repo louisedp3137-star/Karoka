@@ -176,6 +176,28 @@
             background: transparent;
         }
 
+        /* These three cards carry only the floating icon+title pill, no
+           body text -- the base .feature-card padding (sized to leave
+           room for a paragraph below) would otherwise leave an empty
+           gap under the pill, so it's trimmed down here. */
+        .feature-card-compact {
+            padding-bottom: 0.3rem;
+            min-height: 0;
+        }
+
+        .who-benefit-title {
+            display: table;
+            margin: 1.6rem auto 0.3rem;
+            background: var(--white);
+            color: var(--charcoal);
+            padding: 0.5rem 1.6rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
         .features-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -426,6 +448,7 @@
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="rates.html">Rates</a></li>
+                <li><a href="ielts.html">IELTS</a></li>
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
@@ -440,6 +463,7 @@
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="rates.html">Rates</a></li>
+            <li><a href="ielts.html">IELTS</a></li>
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="reviews.html">Reviews</a></li>
@@ -480,7 +504,7 @@
                                 <div class="feature-icon">🎓</div>
                                 <div class="feature-title-pill"><h3 class="feature-title">Experienced & Qualified</h3></div>
                             </div>
-                            <p class="feature-text">30 years teaching across three countries and educational systems</p>
+                            <p class="feature-text">An English first-language speaker with 30 years teaching across the UK, South African and French education systems</p>
                         </div>
 
                         <div class="feature-card">
@@ -488,7 +512,7 @@
                                 <div class="feature-icon">✨</div>
                                 <div class="feature-title-pill"><h3 class="feature-title">Personalised Programmes</h3></div>
                             </div>
-                            <p class="feature-text">Tailored to your level, goals, and availability</p>
+                            <p class="feature-text">No generic courses — tailored to your level, goals, and availability, with a free diagnostic consultation</p>
                         </div>
 
                         <div class="feature-card">
@@ -512,21 +536,53 @@
                                 <div class="feature-icon">🛡️</div>
                                 <div class="feature-title-pill"><h3 class="feature-title">Professional Standards</h3></div>
                             </div>
-                            <p class="feature-text">UK and Madagascar police checks, safeguarding training, confidentiality</p>
+                            <p class="feature-text">UK and Madagascar police checks, safeguarding training, confidentiality and professional ethics</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">📍</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Flexible Location</h3></div>
+                            </div>
+                            <p class="feature-text">Our office, online, or a venue of your choice (additional fees apply)</p>
                         </div>
 
                         <div class="feature-card">
                             <div class="feature-card-header">
                                 <div class="feature-icon">📅</div>
-                                <div class="feature-title-pill"><h3 class="feature-title">Flexible Options</h3></div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Flexible Hours</h3></div>
                             </div>
-                            <p class="feature-text">Weekdays and Saturdays, at office, online, or your location</p>
+                            <p class="feature-text">Monday to Friday, 08:00&ndash;17:00 (EAT). Additional hours available on request</p>
                         </div>
                     </div>
 
                     <div class="lesson-tiles">
                         <img src="images/photo-online-lesson.jpg" alt="Online English lesson" width="1000" height="528">
                         <img src="images/photo-team-meeting.jpg" alt="Karoka team meeting, reviewing documents together" width="1000" height="750">
+                    </div>
+
+                    <h2 class="who-benefit-title">Who could benefit?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card feature-card-compact">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">🎓</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Adolescents & Secondary Students</h3></div>
+                            </div>
+                        </div>
+
+                        <div class="feature-card feature-card-compact">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">💼</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Adults & Professionals</h3></div>
+                            </div>
+                        </div>
+
+                        <div class="feature-card feature-card-compact">
+                            <div class="feature-card-header">
+                                <div class="feature-icon">🏫</div>
+                                <div class="feature-title-pill"><h3 class="feature-title">Schools & Educational Institutions</h3></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

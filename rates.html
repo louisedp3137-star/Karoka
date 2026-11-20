@@ -182,18 +182,6 @@
         .services-grid.consultancy .service-icon-badge { background: var(--brand-green); }
         .services-grid.consultancy .service-name-pill { border-color: var(--brand-green-dark); }
 
-        /* "Coming soon" service card: same shape as the others but dashed
-           border and muted so it reads as not-yet-available at a glance. */
-        .service-card.coming-soon {
-            border-style: dashed;
-            opacity: 0.85;
-        }
-        .service-card.coming-soon .service-desc {
-            font-weight: 700;
-            color: var(--brand-blue-dark);
-            opacity: 1;
-        }
-
         /* Rates Display */
         .rates-display {
             display: none;
@@ -402,6 +390,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="rates.html" class="active">Rates</a></li>
+                <li><a href="ielts.html">IELTS</a></li>
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
@@ -416,6 +405,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="rates.html" class="active">Rates</a></li>
+            <li><a href="ielts.html">IELTS</a></li>
             <li><a href="policies.html">Policies</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="reviews.html">Reviews</a></li>
@@ -426,7 +416,7 @@
     <div class="main-content">
         <div class="container">
             <h1 class="page-title">RATES</h1>
-            <p class="subtitle-box">Select a service to view rates (2027)</p>
+            <p class="subtitle-box" id="ratesSubtitle">Select a service to view rates (2027)</p>
             <a href="files/Karoka-Flyer-2027.pdf" class="flyer-download-link" download><img src="images/karoka-logo.png" alt="" class="flyer-icon"> Download our printable flyer &amp; 2027 rate card (PDF)</a>
 
             <!-- Service Selection -->
@@ -474,13 +464,6 @@
                         <p class="service-desc">Building English skills for teaching professionals</p>
                     </div>
 
-                    <div class="service-card coming-soon" onclick="showRates('ielts-training')">
-                        <div class="service-card-header">
-                        <div class="service-icon-badge">🌟</div>
-                        <div class="service-name-pill"><h3 class="service-name">IELTS Exam Training</h3></div>
-                    </div>
-                        <p class="service-desc">Coming soon</p>
-                    </div>
                 </div>
 
                 <h2 class="category-title">Consultancy Services</h2>
@@ -591,7 +574,7 @@
                 </div>
 
                 <div class="note-box">
-                    <strong>Note:</strong> From A2, working towards B1&ndash;C2 levels.
+                    <strong>Note:</strong> From A2, working towards B1&ndash;C2 levels. Larger groups: price on request.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -644,7 +627,7 @@
                 </div>
 
                 <div class="note-box">
-                    <strong>Preparation for English Certification:</strong> IELTS, TOEFL, Cambridge English, Pearson PTE, LanguageCert, CNED, and more. Pairs/groups must be the same level and sitting the same test.
+                    <strong>Preparation for English Certification:</strong> IELTS, TOEFL, Cambridge English, Pearson PTE, LanguageCert, CNED, and more. Pairs/groups must be the same level and sitting the same test. Larger groups: price on request.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -697,7 +680,7 @@
                 </div>
 
                 <div class="note-box">
-                    <strong>Note:</strong> Online lessons add 5%. Discounts available for longer contracts. Classroom teaching for schools is quoted on request &mdash; please contact us to discuss your school's needs.
+                    <strong>Note:</strong> Online lessons add 5%. Discounts available for longer contracts. Classroom teaching for schools is quoted on request &mdash; please contact us to discuss your school's needs. Larger groups: price on request.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -750,7 +733,7 @@
                 </div>
 
                 <div class="note-box">
-                    <strong>Includes:</strong> Local businesses and the service industry. International organisations: customised rates available &mdash; please contact us.
+                    <strong>Includes:</strong> Local businesses and the service industry. International organisations: customised rates available &mdash; please contact us. Larger groups: price on request.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -803,18 +786,9 @@
                 </div>
 
                 <div class="note-box">
-                    <strong>Note:</strong> Building the English language skills of English teachers and tutors.
+                    <strong>Note:</strong> Building the English language skills of English teachers and tutors. Larger groups: price on request.
                 </div>
 
-                <button class="back-button" onclick="backToServices()">← View All Services</button>
-            </div>
-
-            <!-- IELTS Exam Training -- coming soon placeholder -->
-            <div class="rates-display" id="ielts-training">
-                <h2>🌟 IELTS Exam Training</h2>
-                <div class="note-box" style="text-align:center; font-size:1.1rem; font-weight:700;">
-                    Coming soon
-                </div>
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
             </div>
 
@@ -898,7 +872,7 @@
                 </div>
 
                 <div class="note-box">
-                    <strong>Focus:</strong> Pedagogy for English teaching and professional development
+                    <strong>Focus:</strong> Pedagogy for English teaching and professional development. Larger groups: price on request.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -1000,6 +974,7 @@
     <script>
         function showRates(serviceId) {
             document.getElementById('serviceSelector').style.display = 'none';
+            document.getElementById('ratesSubtitle').style.display = 'none';
             document.querySelectorAll('.container > .rates-notice').forEach(el => {
                 el.style.display = 'none';
             });
@@ -1015,6 +990,7 @@
 
         function backToServices() {
             document.getElementById('serviceSelector').style.display = 'block';
+            document.getElementById('ratesSubtitle').style.display = 'table';
 
             document.querySelectorAll('.container > .rates-notice').forEach(el => {
                 el.style.display = 'block';
