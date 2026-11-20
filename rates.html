@@ -87,6 +87,14 @@
             border-color: var(--brand-green-dark);
         }
 
+        .flyer-icon {
+            width: 19px;
+            height: 19px;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+            margin-top: -3px;
+        }
+
         .category-title {
             display: table;
             margin: 0.9rem auto 0.7rem;
@@ -173,6 +181,18 @@
         .services-grid.consultancy .service-card { background: var(--brand-green-light); border-color: var(--brand-green-dark); }
         .services-grid.consultancy .service-icon-badge { background: var(--brand-green); }
         .services-grid.consultancy .service-name-pill { border-color: var(--brand-green-dark); }
+
+        /* "Coming soon" service card: same shape as the others but dashed
+           border and muted so it reads as not-yet-available at a glance. */
+        .service-card.coming-soon {
+            border-style: dashed;
+            opacity: 0.85;
+        }
+        .service-card.coming-soon .service-desc {
+            font-weight: 700;
+            color: var(--brand-blue-dark);
+            opacity: 1;
+        }
 
         /* Rates Display */
         .rates-display {
@@ -406,8 +426,8 @@
     <div class="main-content">
         <div class="container">
             <h1 class="page-title">RATES</h1>
-            <p class="subtitle-box">Select a service to view rates (January 2026)</p>
-            <a href="files/Karoka-Flyer-2027.pdf" class="flyer-download-link" download>📄 Download our printable flyer &amp; 2027 rate card (PDF)</a>
+            <p class="subtitle-box">Select a service to view rates (2027)</p>
+            <a href="files/Karoka-Flyer-2027.pdf" class="flyer-download-link" download><img src="images/karoka-logo.png" alt="" class="flyer-icon"> Download our printable flyer &amp; 2027 rate card (PDF)</a>
 
             <!-- Service Selection -->
             <div id="serviceSelector">
@@ -435,7 +455,7 @@
                         <div class="service-icon-badge">👩‍🏫</div>
                         <div class="service-name-pill"><h3 class="service-name">Classroom Teaching</h3></div>
                     </div>
-                        <p class="service-desc">Online, homeschooling, and school-based</p>
+                        <p class="service-desc">Online, homeschooling (schools: quote on request)</p>
                     </div>
 
                     <div class="service-card" onclick="showRates('business-english')">
@@ -444,6 +464,22 @@
                         <div class="service-name-pill"><h3 class="service-name">Business English</h3></div>
                     </div>
                         <p class="service-desc">Professional and service-industry English</p>
+                    </div>
+
+                    <div class="service-card" onclick="showRates('teachers-tutors')">
+                        <div class="service-card-header">
+                        <div class="service-icon-badge">🗣️</div>
+                        <div class="service-name-pill"><h3 class="service-name">English for Teachers/Tutors</h3></div>
+                    </div>
+                        <p class="service-desc">Building English skills for teaching professionals</p>
+                    </div>
+
+                    <div class="service-card coming-soon" onclick="showRates('ielts-training')">
+                        <div class="service-card-header">
+                        <div class="service-icon-badge">🌟</div>
+                        <div class="service-name-pill"><h3 class="service-name">IELTS Exam Training</h3></div>
+                    </div>
+                        <p class="service-desc">Coming soon</p>
                     </div>
                 </div>
 
@@ -510,52 +546,52 @@
 
             <!-- English Lessons Rates -->
             <div class="rates-display" id="english-competency">
-                <h2>📚 English Competency</h2>
+                <h2>📚 General English Competency</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Lessons (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each lesson)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
                             <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
+                            <div class="price-amount">44,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
                             <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-amount">39,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups 3+ (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">33,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-section">
-                    <h3>Course of 6+ Lessons (Whole course prepaid)</h3>
+                    <h3>Prepaid (At least 6 lessons paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
                             <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-amount">39,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
                             <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-amount">33,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups 3+ (per person)</div>
-                            <div class="price-amount">25,000 Ar</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">28,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="note-box">
-                    <strong>Note:</strong> Moving from A2+/B1/B2 to C1/C2 levels. Lessons for these clients are prioritised.
+                    <strong>Note:</strong> From A2, working towards B1&ndash;C2 levels.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -563,10 +599,31 @@
 
             <!-- Exam Prep Rates -->
             <div class="rates-display" id="exam-prep">
-                <h2>🎓 Exam Preparation</h2>
+                <h2>🎓 English Certification Preparation</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Lessons (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each lesson)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <div class="price-label">Individual (per person)</div>
+                            <div class="price-amount">50,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Pairs (per person)</div>
+                            <div class="price-amount">45,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">40,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h3>Prepaid (At least 6 lessons paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
                             <div class="price-label">Individual (per person)</div>
@@ -579,36 +636,15 @@
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups 3+ (per person)</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
                             <div class="price-amount">35,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pricing-section">
-                    <h3>Course of 6+ Lessons (Whole course prepaid)</h3>
-                    <div class="pricing-grid">
-                        <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups 3+ (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="note-box">
-                    <strong>Preparation for English Certification:</strong> IELTS, TOESL, Cambridge, Pearson PTE Academic, LanguageCert International ESOL SELT, CNED, French Baccalaureate, Ev@lang
+                    <strong>Preparation for English Certification:</strong> IELTS, TOEFL, Cambridge English, Pearson PTE, LanguageCert, CNED, and more. Pairs/groups must be the same level and sitting the same test.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -616,48 +652,52 @@
 
             <!-- Classroom Teaching Rates -->
             <div class="rates-display" id="classroom-teaching">
-                <h2>👩‍🏫 Classroom Teaching</h2>
+                <h2>👩‍🏫 Classroom Teaching: Online or Homeschool</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Lessons (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each lesson)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (online/homeschool, per person)</div>
+                            <div class="price-label">Individual (per person)</div>
+                            <div class="price-amount">50,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Pairs (per person)</div>
                             <div class="price-amount">45,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Pairs (schools, per person)</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
                             <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups 3+</div>
-                            <div class="price-amount">60,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-section">
-                    <h3>Course of 6+ Lessons (Whole course prepaid)</h3>
+                    <h3>Prepaid (At least 6 lessons paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (online/homeschool, per person)</div>
+                            <div class="price-label">Individual (per person)</div>
+                            <div class="price-amount">45,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Pairs (per person)</div>
                             <div class="price-amount">40,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Pairs (schools, per person)</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
                             <div class="price-amount">35,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups 3+</div>
-                            <div class="price-amount">55,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
                     </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>Note:</strong> Online lessons add 5%. Discounts available for longer contracts. Classroom teaching for schools is quoted on request &mdash; please contact us to discuss your school's needs.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
@@ -665,54 +705,116 @@
 
             <!-- Business English Rates -->
             <div class="rates-display" id="business-english">
-                <h2>💼 Business English</h2>
+                <h2>💼 Business &amp; Service Industry English</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Lessons (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each lesson)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
                             <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
+                            <div class="price-amount">50,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
                             <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-amount">45,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups 3+ (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">40,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-section">
-                    <h3>Course of 6+ Lessons (Whole course prepaid)</h3>
+                    <h3>Prepaid (At least 6 lessons paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
                             <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-amount">45,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
                             <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-amount">40,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups 3+ (per person)</div>
-                            <div class="price-amount">25,000 Ar</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">35,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="note-box">
-                    <strong>Includes:</strong> Service industry English and training for English teachers
+                    <strong>Includes:</strong> Local businesses and the service industry. International organisations: customised rates available &mdash; please contact us.
                 </div>
 
+                <button class="back-button" onclick="backToServices()">← View All Services</button>
+            </div>
+
+            <!-- English for Teachers/Tutors Rates -->
+            <div class="rates-display" id="teachers-tutors">
+                <h2>🗣️ English for Teachers/Tutors</h2>
+
+                <div class="pricing-section">
+                    <h3>Pay As You Go (Paid at the start of each lesson)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <div class="price-label">Individual (per person)</div>
+                            <div class="price-amount">46,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Pairs (per person)</div>
+                            <div class="price-amount">42,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">38,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h3>Prepaid (At least 6 lessons paid in advance)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <div class="price-label">Individual (per person)</div>
+                            <div class="price-amount">42,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Pairs (per person)</div>
+                            <div class="price-amount">38,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">34,000 Ar</div>
+                            <div class="price-unit">per hour</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>Note:</strong> Building the English language skills of English teachers and tutors.
+                </div>
+
+                <button class="back-button" onclick="backToServices()">← View All Services</button>
+            </div>
+
+            <!-- IELTS Exam Training -- coming soon placeholder -->
+            <div class="rates-display" id="ielts-training">
+                <h2>🌟 IELTS Exam Training</h2>
+                <div class="note-box" style="text-align:center; font-size:1.1rem; font-weight:700;">
+                    Coming soon
+                </div>
                 <button class="back-button" onclick="backToServices()">← View All Services</button>
             </div>
 
@@ -721,42 +823,22 @@
                 <h2>📋 Curriculum Development</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Sessions (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each session)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">45,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-label">Individual</div>
+                            <div class="price-amount">50,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-section">
-                    <h3>Sessions 6+ (Whole course prepaid)</h3>
+                    <h3>Prepaid (At least 6 sessions paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-label">Individual</div>
+                            <div class="price-amount">45,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
@@ -774,42 +856,42 @@
                 <h2>🎯 Teacher Training</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Sessions (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each session)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
+                            <div class="price-label">Individual</div>
+                            <div class="price-amount">50,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
                             <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-amount">45,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">40,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-section">
-                    <h3>Sessions 6+ (Whole course prepaid)</h3>
+                    <h3>Prepaid (At least 6 sessions paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-label">Individual</div>
+                            <div class="price-amount">45,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
                             <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-amount">40,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                         <div class="price-card">
-                            <div class="price-label">Groups (per person)</div>
-                            <div class="price-amount">25,000 Ar</div>
+                            <div class="price-label">Groups 3&ndash;6 (per person)</div>
+                            <div class="price-amount">35,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
@@ -827,42 +909,22 @@
                 <h2>🏫 School Management</h2>
 
                 <div class="pricing-section">
-                    <h3>Individual Sessions (Paid at the start of each lesson)</h3>
+                    <h3>Pay As You Go (Paid at the start of each session)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">45,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
+                            <div class="price-label">Individual</div>
+                            <div class="price-amount">55,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-section">
-                    <h3>Sessions 6+ (Whole course prepaid)</h3>
+                    <h3>Prepaid (At least 6 sessions paid in advance)</h3>
                     <div class="pricing-grid">
                         <div class="price-card">
-                            <div class="price-label">Individual (per person)</div>
-                            <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Pairs (per person)</div>
-                            <div class="price-amount">35,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                        <div class="price-card">
-                            <div class="price-label">Groups (per person)</div>
-                            <div class="price-amount">30,000 Ar</div>
+                            <div class="price-label">Individual</div>
+                            <div class="price-amount">50,000 Ar</div>
                             <div class="price-unit">per hour</div>
                         </div>
                     </div>
@@ -879,19 +941,8 @@
             <div class="rates-display" id="proofreading">
                 <h2>✍️ Proofreading/Editing</h2>
 
-                <div class="pricing-section">
-                    <h3>Flexible Pricing</h3>
-                    <div class="pricing-grid">
-                        <div class="price-card">
-                            <div class="price-label">Standard Rate</div>
-                            <div class="price-amount">40,000 Ar</div>
-                            <div class="price-unit">per hour</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="note-box">
-                    <strong>Note:</strong> Pricing is adjustable depending on document complexity and urgency. Contact us for a custom quote.
+                <div class="note-box" style="text-align:center; font-size:1.05rem;">
+                    <strong>Charged per word</strong>, depending on document complexity and urgency. Quote on request &mdash; contact us for a custom quote.
                 </div>
 
                 <button class="back-button" onclick="backToServices()">← View All Services</button>

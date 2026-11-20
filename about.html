@@ -66,12 +66,16 @@
         .about-layout {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: stretch;
             gap: 1.3rem;
             flex-wrap: wrap;
             margin-top: 20px;
         }
 
+        /* Stretched (via .about-layout's align-items: stretch) to match
+           the bio card's full height; each photo is a flex item sharing
+           that height equally, so the column runs flush top-to-bottom
+           with the card alongside it instead of stopping partway down. */
         .about-photos {
             display: flex;
             flex-direction: column;
@@ -82,8 +86,8 @@
 
         .about-photos img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
+            flex: 1 1 0;
+            min-height: 0;
             object-fit: cover;
             border-radius: 14px;
             border: 3px solid var(--white);
@@ -171,6 +175,10 @@
         /* Below 700px each 3-photo column becomes a horizontal row instead
            of a tall vertical stack, so the page doesn't get excessively
            long on mobile. */
+        /* Below 700px the bio card and photo columns no longer sit side
+           by side (.about-layout wraps), so the "stretch to match card
+           height" behaviour above doesn't apply -- each column instead
+           becomes a plain horizontal row of fixed-ratio tiles. */
         @media (max-width: 700px) {
             .about-photos {
                 flex-direction: row;
@@ -181,6 +189,9 @@
             }
             .about-photos img {
                 width: 31%;
+                flex: none;
+                height: auto;
+                aspect-ratio: 4 / 3;
             }
         }
 
