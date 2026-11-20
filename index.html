@@ -49,15 +49,35 @@
         
 
         /* Announcement banner -- see the HTML comment just above the
-           .announcement-banner element below for how to edit/remove it. */
+           .announcement-banner element below for how to edit/remove it.
+           Text scrolls continuously (marquee-style) via .announcement-marquee. */
         .announcement-banner {
             margin-top: 77px;
-            padding: 0.6rem 5%;
+            padding: 0.6rem 0;
             background: linear-gradient(90deg, var(--brand-green-dark) 0%, var(--brand-blue-dark) 100%);
             color: var(--white);
-            text-align: center;
             font-weight: 600;
             font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .announcement-marquee {
+            display: inline-block;
+            padding-left: 100%;
+            animation: announcement-scroll 18s linear infinite;
+        }
+
+        @keyframes announcement-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .announcement-marquee {
+                animation: none;
+                padding-left: 5%;
+            }
         }
 
         .announcement-banner .banner-icon {
@@ -299,11 +319,27 @@
             box-shadow: 0 12px 26px rgba(0,0,0,0.2);
         }
 
-        /* Second CTA button, same shape/size as .cta-button, green-bordered
-           so the two read as a pair without competing for attention. */
-        .cta-button.secondary {
+        /* Flyer download link, placed right under the hero so it doesn't
+           get lost at the bottom of the page. */
+        .flyer-download-top {
+            display: table;
+            margin: 0.8rem auto 0;
+            background: var(--white);
+            color: var(--brand-blue-dark);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            padding: 0.5rem 1.6rem;
+            border-radius: 50px;
+            border: 2px solid var(--brand-blue-dark);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .flyer-download-top:hover {
+            color: var(--brand-green-dark);
             border-color: var(--brand-green-dark);
-            margin-top: 0.6rem;
+            transform: translateY(-2px);
         }
 
         
@@ -411,8 +447,10 @@
                  block (and the matching comment). To bring it back later, you
                  (or Claude) can paste this same block back in. -->
             <div class="announcement-banner">
-                <span class="banner-icon">📢</span>
-                <span class="announcement-text">2027 hourly rates and exciting new IELTS exam training coming soon&hellip;</span>
+                <div class="announcement-marquee">
+                    <span class="banner-icon">📢</span>
+                    <span class="announcement-text">2027 hourly rates and exciting new IELTS exam training coming soon&hellip;</span>
+                </div>
             </div>
 
             <section class="hero">
@@ -423,6 +461,8 @@
                     </div>
                 </div>
             </section>
+
+            <a href="files/Karoka-Flyer-2027.pdf" class="flyer-download-top" download>📄 Download Our Flyer (PDF)</a>
 
             <section class="features">
                 <div class="features-container">
@@ -486,7 +526,6 @@
             <section class="cta-section">
                 <p class="cta-tagline">Professional. Personalised. Proven results.</p>
                 <a href="contact.html" class="cta-button">Get Started Today</a>
-                <a href="files/Karoka-Flyer-2027.pdf" class="cta-button secondary" download>📄 Download Our Flyer (PDF)</a>
             </section>
     </div>
 
