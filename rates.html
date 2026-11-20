@@ -120,13 +120,27 @@
             margin-bottom: 0.4rem;
         }
 
-        /* Tutoring has 5 cards -- 3 columns splits them 3+2 (centred,
-           balanced) instead of the default 4 columns' lopsided 4+1. */
+        /* Tutoring has 5 cards. A 3-column CSS grid would split them
+           3+2, but grid's implicit row placement leaves that shorter
+           second row flush left (two cards, then an empty third
+           column) rather than centred under the row above. Flexbox
+           with justify-content:center naturally centres a short last
+           row instead, so tutoring switches to the same
+           flex-wrap/flex-basis pattern the homepage's .features-grid
+           already uses. */
         .services-grid.tutoring {
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .services-grid.tutoring .service-card {
+            flex: 0 1 calc(33.333% - 0.534rem);
+            max-width: calc(33.333% - 0.534rem);
+            min-width: 220px;
         }
 
         .service-card {
@@ -354,14 +368,17 @@
            overridden by it. */
 
         @media (max-width: 968px) {
-            .services-grid, .services-grid.tutoring { grid-template-columns: repeat(2, 1fr); max-width: none; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid.tutoring { max-width: none; }
+            .services-grid.tutoring .service-card { flex-basis: calc(50% - 0.4rem); max-width: calc(50% - 0.4rem); }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-toggle { display: block; }
             .page-title { font-size: 1.5rem; padding: 0.5rem 1.6rem; }
-            .services-grid, .services-grid.tutoring { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .services-grid.tutoring .service-card { flex-basis: 100%; max-width: 100%; }
             .pricing-grid { grid-template-columns: 1fr; }
             /* Cards stack in a single column here, so there's no side-by-side
                row to keep aligned -- let each pill size to its own text
